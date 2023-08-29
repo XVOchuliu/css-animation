@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .loading-mask{
+            min-height: 100vh;
+            display: flex; /* 弹性盒子，自适应流动布局 */
+            justify-content: center; /* 水平居中 */
+            align-items: center; /* 垂直居中 */
+            background-color: #000;
+        }
+        .loading-text{
+             color: #fff; /*文字颜色 */
+            font-size: 32px; /* 文字大小 */
+        }
+        @keyframes upDown{
+            0%{
+                transform: translateY(0px); /* 垂直方向上下移动 */
+            }
+            20%{
+                transform: translateY(-24px);
+            }
+            40%,100%{
+                transform: translateY(0px);
+            }
+        }
+        .loading-text span{
+            display: inline-block; /* 转换为行内块元素 */
+            animation: upDown 1.5s ease-in-out infinite;
+            animation-delay: calc(.1s*var(--i)); /* 根据变量 --i 的值，计算动画元素之间的延迟时间，延迟时间为 0.1s * var(--i) */
+        }
+    </style>
+</head>
+<body>
+    <div class="loading-mask">
+        <div class="loading-text">
+            <!-- 动画延迟，每个文字不同的变量值 -->
+            <span style="--i:1">拼</span>
+            <span style="--i:2">命</span>
+            <span style="--i:3">加</span>
+            <span style="--i:4">载</span>
+            <span style="--i:5">中</span>
+            <span style="--i:6">.</span>
+            <span style="--i:7">.</span>
+            <span style="--i:8">.</span>
+        </div>
+    </div>
+</body>
+</html>

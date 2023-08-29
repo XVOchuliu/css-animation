@@ -1,0 +1,59 @@
+<!-- 总结：
+1.准备按钮结构和样式
+2.准备刀光结构、样式
+3.添加hover效果。位移刀光、修改按钮颜色
+
+本质揭秘：
+刀光是一个定位盒子，设置了渐变背景，hover时位移动画 -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        a{
+            position: relative;
+            text-decoration: none; /* 去除下划线 */
+            padding: 15px 30px;
+            background-color: #27022d;
+            color: #fff;
+            border-radius: 5px;
+            box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.6);
+            overflow: hidden;
+            transition: all .5s;
+        }
+        body{
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: skyblue;
+        }
+        /* 伪元素在元素的内容前面插入新内容 */
+        a::before{
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -40%;
+            width: 20%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, #fff, transparent);
+            transform: skew(-45deg);
+        }
+        /* 位移刀光 */
+        a:hover::before{
+            left: 120%;
+            transition: all .5s;
+        }
+        /* 鼠标放入触发 */
+        a:hover{
+            background-color: #00BFFF;
+        }
+    </style>
+</head>
+<body>
+    <a href="#">Click Me</a>
+</body>
+</html>

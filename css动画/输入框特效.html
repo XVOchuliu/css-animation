@@ -1,0 +1,83 @@
+<!-- 总结：
+1.准备输入框结构，两个输入框
+2.设置body样式，内容居中&底色
+3.设置输入框样式，输入框撑满，span定位
+4.基于激活样式（focus或valid）
+
+本质揭秘：定位和过渡动画 -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            flex-direction: column;
+            gap: 30px;
+            background: #1d2b3a;
+        }
+        .inputBox {
+            position: relative;
+            width: 250px;
+        }
+        .inputBox input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            background: #1d2b3a;
+            border-radius: 5px;
+            outline: none; /* 删除元素的外轮廓 */
+            color: #fff;
+        }
+        .inputBox span {
+            position: absolute;
+            left: 0;
+            padding: 10px;
+            pointer-events: none; /* 设置元素的内容不响应鼠标事件 */
+            font-size: 16px;
+            color:rgba(255, 255, 255, 0.25);
+            text-transform: uppercase;
+            transition: .5s;
+        }
+        .inputBox input:valid ~ span, 
+        .inputBox input:focus ~ span {
+            color: #00BFFF;
+            transform: translateX(10px) translateY(-7px);
+            font-size: 12px;
+            padding: 0 10px;
+            background: #1d2b3a;
+            border-left: 1px solid #00BFFF;
+            border-right: 1px solid #00BFFF;
+            letter-spacing: 4px; /* 设置文本元素中字符之间的间距 */
+        }
+        .inputBox:nth-child(2) input:valid ~ span, 
+        .inputBox:nth-child(2) input:focus ~ span {
+            background: #00BFFF;
+            color: #1d2b3a;
+            border-radius: 2px;
+        }
+    </style>
+</head>
+<body>
+    <div class="inputBox">
+        <input type="text" required>
+        <span>第一个名字</span>
+      </div>
+      <div class="inputBox">
+        <input type="text" required>
+        <span>下一个名字</span>
+    </div>
+</body>
+</html>

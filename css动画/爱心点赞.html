@@ -1,0 +1,118 @@
+<!-- 总结：
+1.准备按钮结构和样式
+2.设计绘制爱心描边动画
+3.礼花小圆球结构和样式
+4.礼花小圆球动画设计
+5.添加心跳效果
+
+本质揭秘：
+1.描边动画：是在修改设置stroke-dashoffset偏移量
+2.礼花小圆球散开：利用的是缩放动画和多重阴影 -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        #heart {
+            fill: #eee; /* 填充颜色 */
+            stroke: #fe7a7f;  /* 描边颜色 */
+            stroke-width: 40px; /* 描边宽度 */
+            stroke-dasharray: 2600; /* 绘制虚线的数组，其中包含2600个元素，每个元素都是一个0到40之间的整数。 */
+            stroke-dashoffset: 2600; /* 设置虚线偏移量的属性，其值设置为2600，使得虚线从整个描边宽度开始 */
+            stroke-linecap: round; /* 设置描边端点的属性，其值设置为"round"，表示描边端点为圆形 */
+        }
+        span {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            opacity: 0;
+            box-shadow: 
+                0 -160px 0 #fe7a7f,
+                0 160px 0 #fe7a7f,
+                -160px 0 0 #fe7a7f,
+                160px 0 0 #fe7a7f,
+                -120px -120px 0 #fe7a7f,
+                120px -120px 0 #fe7a7f,
+                120px 120px 0 #fe7a7f,
+                -120px 120px 0 #fe7a7f
+        }
+        #checkbox:checked ~ svg #heart {
+            animation: drawHeart 1s linear forwards;
+        }
+        @keyframes drawHeart {
+            0% {
+                stroke-dashoffset: 2600;
+            }
+            80% {
+                fill: #eee;
+                stroke-dashoffset: 0;
+            }
+            100% {
+                fill: #fe7a7f;
+                stroke-dashoffset: 0;
+            }
+        }
+        #checkbox:checked ~ span {
+            animation: blink .5s ease-in-out forwards;
+            animation-delay: 0.85s;
+        }
+        @keyframes blink {
+            0% {
+                transform: scale(-50%, -50%) scale(0.5);
+                opacity: 0.8;
+            }
+            50% {
+                transform: translate(-50%, -50%) scale(1);
+                opacity: 1;
+            }
+            100% {
+                transform: translate(-50%, -50%) scale(1.1);
+                opacity: 0;
+            }
+        }
+        #checkbox:checked ~ svg {
+            animation: beat 1s linear forwards;
+        }
+        @keyframes beat {
+            0% {
+                transform: scale(1);
+            }
+            70% {
+                transform: scale(1);
+            }
+            80% {
+                transform: scale(1.2);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+    </style>
+</head>
+<body>
+    <label>
+        <input type="checkbox" id="checkbox" hidden>
+        <svg t="1684908564947" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2450" width="200" height="200">
+          <path id="heart" d="M535.9 216.7l-22.9 23-22.9-23.1c-89.2-89.7-234.3-90.1-323.9-0.8l-0.8 0.8c-89.7 90.1-89.7 235.8 0 326L476 859.3c20.1 20.4 52.9 20.7 73.4 0.7l0.7-0.7 310.7-316.7c89.7-90.1 89.7-235.8 0-326-89.2-89.7-234.3-90.1-323.9-0.9l-1 1z" p-id="2451"></path>
+        </svg>
+        <span></span>
+    </label>
+</body>
+</html>

@@ -1,0 +1,105 @@
+<!-- 总结：
+1.准备结构和基本样式
+2.设置珠子旋转
+3.设置滤镜流动效果
+
+本质揭秘：
+1.两层珠子
+2.旋转动画相同，一层动画延迟（css变量控制）
+3.添加滤镜效果（svg）
+4.svg宽高为0，不要影响布局 -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        .box{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: #0c1b21;
+        }
+        .loader{
+            position: relative;
+            width: 250px;
+            height: 250px;
+            background: transparent;
+            animation: animate 10s ease-in-out infinite;
+            filter: url(#fluid);
+        }
+        .loader span{
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            transform: rotate(calc(45deg * var(--i)));
+        }
+        .loader span::before{
+            content: "";
+            position: absolute;
+            top: 0;
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(45deg,#c7eeff,#03a9f4);
+            border-radius: 50%;
+            box-shadow: 0 0 30px #00bcd4;
+            left: calc(50% - 20px);
+        }
+        @keyframes animate{
+            0%{
+                transform: rotate(0deg);
+            }
+            100%{
+                transform: rotate(360deg);
+            }
+        }
+        .rotate{
+            animation: animate 4s ease-in-out infinite;
+            animation-delay: calc(-0.2s * var(--j));
+        }
+        svg{
+            width: 0;
+            height: 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="box">
+        <svg>
+            <filter id="fluid">
+                <feGaussianBlur in="SourceGraphic" stdDeviation="1"/>
+                <feColorMatrix valus="
+                    1 0 0 0 0
+                    0 1 0 0 0
+                    0 0 1 0 0
+                    0 0 0 20 -10"></feColorMatrix>
+            </filter>
+        </svg>
+        <div class="loader">
+            <span style="--i:1"></span>
+            <span style="--i:2"></span>
+            <span style="--i:3"></span>
+            <span style="--i:4"></span>
+            <span style="--i:5"></span>
+            <span style="--i:6"></span>
+            <span style="--i:7"></span>
+            <span style="--i:8"></span>
+            <span class="rotate" style="--j:0"></span>
+            <span class="rotate" style="--j:1"></span>
+            <span class="rotate" style="--j:2"></span>
+            <span class="rotate" style="--j:3"></span>
+            <span class="rotate" style="--j:4"></span>
+        </div>
+    </div>
+</body>
+</html>

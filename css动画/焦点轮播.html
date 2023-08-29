@@ -1,0 +1,102 @@
+<!-- 总结：
+1.准备基本结构架子（预览图片容器+底部图片列表）
+2.细化底部图片列表样式（flex布局，gap控制间隙）
+3.添加高亮类名，默认第一个高亮
+4.js动态设置背景，并控制类名
+
+本质揭秘：
+1.预览的位置，通过背景图设置
+2.将来修改背景图，基于transition，就可以实现切换过渡
+3.js切换动画，添加节流效果 -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: linear-gradient(to bottom, pink, skyblue);
+        }
+        .container {
+            width: 1000px;
+            position: relative;
+        }
+        .container .bigbox {
+            width: 1000px;
+            height: 500px;
+            margin: 10px;
+            background: url(img/1.jpg) no-repeat center / cover;
+            border-radius: 5px;
+            box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.1);
+            transition: all 1s;
+        }
+        .container ul {
+            list-style: none;
+            position: relative;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            gap: 15px; /* 设置行与行之间的间距 */
+        }
+        .container ul li {
+            flex: 1;
+            height: 120px;
+            cursor: pointer;
+        }
+        .container ul li img {
+            width: 100%;
+            height: 100%;
+            border-radius: 10px;
+            box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.1);
+        }
+        .container ul li img.active {
+            border: 5px solid orange
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="bigbox"></div>
+        <div class="list">
+          <ul>
+            <li><img class="active" src="image/d1.jpg" alt=""></li>
+            <li><img src="image/d2.jpg" alt=""></li>
+            <li><img src="image/d3.jpg" alt=""></li>
+            <li><img src="image/d4.jpg" alt=""></li>
+            <li><img src="image/d5.jpg" alt=""></li>
+          </ul>
+        </div>
+    </div>
+    <script>
+        const bigbox = document.querySelector('.bigbox')
+        const imgs = document.querySelectorAll('img')
+        let canChange = true // 节流处理
+        imgs.forEach(img => {
+          img.addEventListener('click', function() {
+            if (canChange) {
+              bigbox.style.backgroundImage = `url(${this.src})`
+              imgs.forEach(item => item.classList.remove('active'))
+              this.classList.add('active')
+              canChange = false
+              setTimeout(() => canChange = true, 1000)
+            }
+          })
+        })
+        // 手动触发第一个img元素的点击事件
+        imgs[0].click();
+      </script>
+</body>
+</html>

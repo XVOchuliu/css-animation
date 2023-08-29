@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif; /* 设置文本的字体。这里使用了一个字体名称'Poppins'和一个通用字体族sans-serif */
+        }
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: #252839;
+        }
+        h2 {
+            position: relative;
+            font-size: 14vw;
+            color: #252839;
+            -webkit-text-stroke: 0.3vw #383d52; /* 模拟文本的阴影效果，尤其是当文本颜色和背景颜色接近时: 描边的宽度 描边的颜色 */
+        }
+        h2::before {
+            content: 'Loading...';
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 0%;
+            height: 100%;
+            color: #00BFFF;
+            -webkit-text-stroke: 0vw #383d52;
+            border-right: 2px solid #00BFFF;
+            overflow: hidden;
+            animation: animate 5s linear infinite alternate;
+        }
+        @keyframes animate {
+            0% {
+                width: 0%;
+            }
+            90% {
+                width: 100%;
+            }
+            100% {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h2>Loading...</h2>
+</body>
+</html>

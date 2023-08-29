@@ -1,0 +1,118 @@
+<!-- 总结：
+1.准备结构和基本样式
+2.准备拖尾效果
+3.准备颜色调整
+
+本质揭秘：
+1.创建铺满屏幕的盒子（js直接生成）
+2.伪元素设置颜色盒子
+3.添加hover立马显示，移出2s内渐渐消失（过渡）
+4.不同的盒子设置不同的颜色（结构伪类选择器） -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        .container{
+            display: flex;
+            flex-wrap: wrap;
+        }
+        .container .box{
+            position: relative;
+            width: 24px;
+            height: 24px;
+            background: #111;
+            border: 1px solid rgba(0, 0, 0, .2);
+            box-sizing: border-box;
+            overflow: hidden;
+        }
+        .container .box::before{
+            content: "";
+            position: absolute;
+            inset: 6px;
+            background: #1d1d1d;
+            box-shadow: 0 1px 4px #000;
+            transition: 2s ease-in-out;
+        }
+        .container .box:hover::before{
+            background: #FF0000;
+            box-shadow: 
+                0 0 3px #FF0000,
+                0 0 10px #FF0000;
+            transition: 0s ease-in-out;
+        }
+        .container .box:nth-child(9n+1):hover::before{
+            background: #FF0000;
+            box-shadow: 
+                0 0 3px #FF0000,
+                0 0 10px #FF0000;
+        }
+        .container .box:nth-child(9n+2):hover::before{
+            background: #00FF00;
+            box-shadow: 
+                0 0 3px #00FF00,
+                0 0 10px #00FF00;
+        }
+        .container .box:nth-child(9n+3):hover::before{
+            background: #0000FF;
+            box-shadow: 
+                0 0 3px #0000FF,
+                0 0 10px #0000FF;
+        }
+        .container .box:nth-child(9n+4):hover::before{
+            background: #FFFF00;
+            box-shadow: 
+                0 0 3px #FFFF00,
+                0 0 10px #FFFF00;
+        }
+        .container .box:nth-child(9n+5):hover::before{
+            background: #00FFFF;
+            box-shadow: 
+                0 0 3px #00FFFF,
+                0 0 10px #00FFFF;
+        }
+        .container .box:nth-child(9n+6):hover::before{
+            background: #FF00FF;
+            box-shadow: 
+                0 0 3px #FF00FF,
+                0 0 10px #FF00FF;
+        }
+        .container .box:nth-child(9n+7):hover::before{
+            background: #87CEFA;
+            box-shadow: 
+                0 0 3px #87CEFA,
+                0 0 10px #87CEFA;
+        }
+        .container .box:nth-child(9n+8):hover::before{
+            background: #00FA9A;
+            box-shadow: 
+                0 0 3px #00FA9A,
+                0 0 10px #00FA9A;
+        }
+        .container .box:nth-child(9n+9):hover::before{
+            background: #FFC0CB;
+            box-shadow: 
+                0 0 3px #FFC0CB,
+                0 0 10px #FFC0CB;
+        }
+    </style>
+</head>
+<body>
+    <div class="container"></div>
+    <script>
+        for(let i=0;i<1891;i++){
+            let container = document.querySelector(".container");
+            let box = document.createElement("div");
+            box.className = "box";
+            container.appendChild(box);
+        }
+    </script>
+</body>
+</html>

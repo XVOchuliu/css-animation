@@ -1,0 +1,122 @@
+<!-- 总结：
+1.准备结构和基本样式
+2.准备外层盒子样式
+3.设置图标样式和提示文字
+
+本质揭秘：
+1.准备使用图标（字体图标）
+2.添加提示文字（伪元素）
+3.添加过渡属性达到动画效果 -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="http://at.alicdn.com/t/c/font_4096975_w98djv8agrm.css">
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            background-color: #ddd;
+        }
+        .item {
+            display: inline-flex;
+            align-items: center;
+            height: 60px;
+            width: 60px;
+            margin: 4px 8px;
+            overflow: hidden;
+            background: #fff;
+            border-radius: 30px;
+            box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.24);
+            transition: all 0.5s;
+        }
+        .item:hover {
+            width: 180px;
+            border: none;
+        }
+        .item:hover div {
+            background-color: #e9e9e9;
+        }
+        .item:hover:nth-child(1) div span{
+           color: #25d366;
+        }
+        .item:hover:nth-child(2) div span{
+           color: #f00;
+        }
+        .item:hover:nth-child(3) div span{
+           color: orange;
+        }
+        .item:hover:nth-child(4) div span{
+           color: #066093;
+        }
+        .item div {
+            width: 60px;
+            height: 60px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 30px;
+            font-size: 28px;
+            position: relative;
+            transition: all 0.5s;
+        }
+        .item div span {
+            font-size: 40px;
+        }
+        .item:nth-child(2) div span{
+            font-size: 35px;
+        }
+        .item div::after {
+            position: absolute;
+            width: fit-content; /* 设置元素的内容宽度，使得内容在容器内能够完全显示 */
+            word-break: keep-all; /* 不会在单词内换行，从而保持文本的连贯性 */
+            font-size: medium; /* 文本的大小将默认为中等大小 */
+            left: 72px;
+            pointer-events: auto; /* 元素默认处理鼠标事件 */
+            cursor: pointer;
+        }
+        .item:nth-child(1) div::after {
+            content: "打开微信";
+        }
+        .item:nth-child(2) div::after {
+            content: '打开抖音';
+        }
+        .item:nth-child(3) div::after {
+            content: '打开WeGame';
+        }
+        .item:nth-child(4) div::after {
+            content: '打开STEAM';
+        }
+        /* 鼠标悬浮加文字颜色和下划线 */
+        .item div:hover::after {
+            text-decoration: underline;
+            color: #00BFFF ;
+        }
+    </style>
+</head>
+<body>
+    <div class="item">
+        <div><span class="iconfont icon-weixin"></span></div>
+    </div>
+    <div class="item">
+        <div><span class="iconfont icon-douyin"></span></div>
+    </div>
+    <div class="item">
+        <div><span class="iconfont icon-wegame"></span></div>
+    </div>
+    <div class="item">
+        <div><span class="iconfont icon-steam"></span></div>
+    </div>
+</body>
+</html>

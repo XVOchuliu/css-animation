@@ -1,0 +1,170 @@
+<!-- 总结：
+1.准备基本结构架子（一个大容器居中显示）
+2.设计内部导航结构（五个li，第一个激活状态）
+3.设计外边圆弧效果（定位圆+定位阴影实现）
+4.js动态控制类名，设计圆弧位置
+5.css变量，动态设置颜色
+
+本质揭秘：
+1.定位圆+定位阴影，实现外边圆弧效果
+2.css变量，动态设置颜色 -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="http://at.alicdn.com/t/c/font_4144272_3vtq4renm6e.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        a {
+            text-decoration: none;
+        }
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: #222327;
+        }
+        .nav {
+            position: relative;
+            width: 400px;
+            height: 60px;
+            background: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 10px;
+        }
+        .nav ul {
+            display: flex;
+            width: 350px;
+        }
+        .nav ul li {
+            list-style: none;
+            position: relative;
+            width: 70px;
+            height: 60px;
+            z-index: 2;
+            display: flex;
+            justify-content: space-evenly;
+        }
+        .nav ul li span {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 55px;
+            height: 55px;
+            border-radius: 50%;
+            transition: 0.5s;
+            transition-delay: 0s;
+            }
+        .nav ul li span i {
+            color: #222327;
+            font-size: 1.5em;
+            cursor: pointer;
+        }
+        .nav ul li.active span {
+            background: var(--clr);
+            transform: translateY(-27px);
+            transition-delay: 0.25s;
+        }
+        .nav ul li.active span i {
+            color: #fff;
+        }
+        .nav ul li span::before {
+            content: "";
+            position: absolute;
+            top: 10px;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--clr);
+            border-radius: 50%;
+            filter: blur(5px);
+            opacity: 0;
+            transition: 0.5s;
+            transition-delay: 0s;
+        }
+        .nav ul li.active span::before {
+            opacity: 0.5;
+            transition-delay: 0.25s;
+        }
+        .indicator {
+            position: absolute;
+            top: -35px;
+            width: 70px;
+            height: 70px;
+            background: #fff;
+            border-radius: 50%;
+            z-index: 1;
+            transition: 0.5s;
+        }
+        .indicator::before {
+            content: "";
+            position: absolute;
+            top: 5px;
+            left: -28px;
+            width: 30px;
+            height: 30px;
+            background: transparent;
+            border-radius: 50%;
+            box-shadow: 15px 18px #fff;
+        }
+        .indicator::after {
+            content: "";
+            position: absolute;
+            top: 5px;
+            right: -28px;
+            width: 30px;
+            height: 30px;
+            background: transparent;
+            border-radius: 50%;
+            box-shadow: -15px 18px #fff;
+        }
+        .nav li:nth-child(1).active~.indicator {
+            transform: translateX(calc(70px*0));
+        }
+        .nav li:nth-child(2).active~.indicator {
+            transform: translateX(calc(70px*1));
+        }
+        .nav li:nth-child(3).active~.indicator {
+            transform: translateX(calc(70px*2));
+        }
+        .nav li:nth-child(4).active~.indicator {
+            transform: translateX(calc(70px*3));
+        }
+        .nav li:nth-child(5).active~.indicator {
+            transform: translateX(calc(70px*4));
+        }
+    </style>
+</head>
+<body>
+    <div class="nav">
+        <ul>
+          <li class="active" style="--clr:#f44336"><span><i class="iconfont icon-home"></i></span></li>
+          <li style="--clr:#0fc70f"><span><i class="iconfont icon-envelope"></i></span></li>
+          <li style="--clr:#2196f3"><span><i class="iconfont icon-comment"></i></span></li>
+          <li style="--clr:#b145e9"><span><i class="iconfont icon-heart"></i></span></li>
+          <li style="--clr:#ffa111"><span><i class="iconfont icon-user"></i></span></li>
+          <div class="indicator"></div>
+        </ul>
+    </div>
+    <script>
+        const lis = document.querySelectorAll(".nav li")
+        lis.forEach(li => li.addEventListener("click", function () {
+          lis.forEach(item => {
+            item.classList.remove("active")
+            this.classList.add("active")
+          })
+        }))
+    </script>
+</body>
+</html>

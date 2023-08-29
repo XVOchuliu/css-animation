@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .btn{
+            background-color: transparent; /* 背景色透明 */
+            border-radius: 5px; /* 边框圆角 */
+            border: 2px solid blue; /* 蓝色边框 */
+            color: blue; /* 蓝色文字 */
+            padding: 10px 20px; /* 内边距 */
+            font-weight: bold; /* 字体加粗 */
+            position: relative; /* 相对定位 */
+            transition: all 1s; /* 使文字有过渡 */
+            overflow: hidden; /* 溢出隐藏 */
+        }
+        /* 悬浮遮罩（伪元素） */
+        .btn::before{ /* 定位盖住按钮 */
+            content: '';
+            height: 100%;
+            width: 0%;
+            position: absolute;
+            left: 0;
+            top: 0;
+            background-color: blue;
+            transform: skewX(45deg); /* 斜切，让元素倾斜 */
+            transition: all 1s; /* 过渡 */
+            z-index: -1; /* 降低悬浮遮罩层级 */
+            left: -30px;
+        }
+        .btn:hover::before{
+            width: 180%;
+        }
+        .btn:hover{
+            color: white; /* 文字颜色 */
+        }
+    </style>
+</head>
+<body>
+    <button class="btn">悬浮动画</button>
+</body>
+</html>

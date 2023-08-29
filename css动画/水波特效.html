@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .mask{
+            background-color: #000;
+            height: 100vh;
+            position: relative;
+        }
+        .words{
+            color: #fff;
+            font-size: 80px;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%); /* 在水平和垂直方向上分别向左和向上移动其自身宽度和高度的一半 */
+        }
+        .words:nth-child(1){
+            color: transparent; /* 文本颜色为透明，不可见 */
+            -webkit-text-stroke: 2px #03a9f4; /* 给文本添加边框 */
+        }
+        .words:nth-child(2){
+            color: #03a9f4;
+            animation: water 2s ease-in-out infinite alternate;
+        }
+        /* 利用clip-path生成器裁剪图形 */
+        @keyframes water{
+            0%{
+                clip-path: polygon(31% 61%, 53% 65%, 77% 67%, 100% 68%, 100% 100%, 0% 100%, 0% 35%, 13% 52%);
+            }
+            100%{
+                clip-Path: polygon(51% 68%, 71% 59%, 86% 44%, 100% 24%, 100% 100%, 0% 100%, 0% 72%, 28% 71%)
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="mask">
+        <div class="words">Loading...</div>
+        <div class="words">Loading...</div>
+    </div>
+</body>
+</html>

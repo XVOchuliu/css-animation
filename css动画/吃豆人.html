@@ -1,0 +1,106 @@
+<!-- 总结：
+1.准备吃豆人结构和基本样式
+2.准备吃豆人结构和基本样式
+3.添加动画和样式调优
+
+本质揭秘：
+1.伪元素完成吃豆人整体样式（定位完成眼睛）
+2.盒子阴影添加额外豆子
+3.添加动画 -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        body{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: #1d2630;
+        }
+        .pacman::before,
+        .pacman::after{
+            content: "";
+            position: absolute;
+            width: 100px;
+            height: 50px;
+            margin-top: -50px;
+            margin-left: -50px;
+            background: #ffee07;
+            border-radius: 50px 50px 0 0;
+        }
+        .pacman::before{
+            animation: up 0.4s infinite;
+        }
+        .pacman::after{
+            margin-top: -1px;
+            border-radius: 0 0 50px 50px;
+            animation: down 0.4s infinite;
+        }
+        .pacman{
+            position: relative;
+        }
+        .pacman .ojo{
+            position: absolute;
+            width: 13px;
+            height: 13px;
+            background-color: black;
+            border-radius: 50%;
+            bottom: 20px;
+            left: 20px;
+            z-index: 2;
+            transform-origin: -20px 0;
+            animation: up 0.4s infinite;
+        }
+        .dot{
+            position: absolute;
+            width: 15px;
+            height: 15px;
+            margin-top: -5px;
+            margin-left: 30px;
+            border-radius: 50%;
+            background: #ffee07;
+            box-shadow: 
+                40px 0 0 #ffee07,
+                80px 0 0 #ffee07,
+                120px 0 0 #ffee07;
+            animation: dot 0.4s infinite;
+        }
+        @keyframes up{
+            0%,100%{
+                transform: rotate(0);
+            }
+            50%{
+                transform: rotate(-40deg);
+            }
+        }
+        @keyframes down{
+            0%,100%{
+                transform: rotate(0);
+            }
+            50%{
+                transform: rotate(40deg);
+            }
+        }
+        @keyframes dot{
+            to{
+                margin-left: -10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="pacman">
+        <div class="ojo"></div>
+    </div>
+    <div class="dot"></div>
+</body>
+</html>

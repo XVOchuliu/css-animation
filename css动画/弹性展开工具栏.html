@@ -1,0 +1,112 @@
+<!-- 总结：
+1.准备结构和基本样式
+2.准备按钮图标基本样式
+3.添加js点击增加取消类名
+4.重复按钮和图标
+5.动画调优
+
+本质揭秘：
+1.定位重合
+2.增加取消类名，完成样式的变化
+3.添加动画（hover为过渡属性）
+4.字体图标 -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="http://at.alicdn.com/t/c/font_4096975_i8f4jjygw.css">
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            min-height: 100vh;
+            background: #222;
+        }
+        .button{
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            background: #00BFFF;
+            position: relative;
+            color: #fff;
+            text-align: center;
+            left: 50%;
+            margin-left: -35px;
+            z-index: 1;
+        }
+        .button::after{
+            content: "+";
+            position: absolute;
+            inset: -6.5px;
+            font-size: 3.5em;
+        }
+        .icons{
+            width: 0%;
+            height: 36px;
+            list-style: none;
+            padding: 16px 10px 10px 50px;
+            background: #fff;
+            box-shadow: 1px 1px 1px 1px #dcdcdc;
+            border-radius: 2em;
+            display: flex;
+            justify-content: space-evenly;
+            align-items: center;
+            margin: -60px 0 0 44%;
+            overflow: hidden;
+        }
+        .icons li i{
+            color: #00BFFF;
+            font-size: 1.5em !important;
+        }
+        .icons li:nth-child(1){
+            margin-left: 50px;
+        }
+        .button.active{
+            transform: rotate(45deg);
+            left: 60px;
+        }
+        .icons.open{
+            width: 80%;
+            height: 65.2px;
+            margin: -68px 0 0 6%;
+        }
+        .icons li{
+            width: 80px;
+        }
+        .button,
+        .icons{
+            transition: all 0.5s cubic-bezier(0.3, 0.03, 0.7, 0.9);
+        }
+    </style>
+</head>
+<body>
+    <div class="toolbar">
+        <div class="button"></div>
+        <ul class="icons">
+            <li><i class="iconfont icon-message"></i></li>
+            <li><i class="iconfont icon-cart"></i></li>
+            <li><i class="iconfont icon-money"></i></li>
+            <li><i class="iconfont icon-star"></i></li>
+            <li><i class="iconfont icon-setting"></i></li>
+        </ul>
+    </div>
+    <script>
+        var button = document.querySelector(".button");
+        var icons = document.querySelector(".icons");
+        button.addEventListener("click", function() {
+            button.classList.toggle("active");
+            icons.classList.toggle("open");
+        });
+    </script>
+</body>
+</html>

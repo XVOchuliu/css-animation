@@ -1,0 +1,66 @@
+<!-- 总结：
+1.准备结构和基本样式
+2.准备提示框样式
+3.准备裁剪和动态样式
+
+本质揭秘：
+1.文字i到最右边（浮动）
+2.裁剪成圆形再恢复到原来的样子
+3.添加动画（hover为过渡属性） -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: #000;
+        }
+        .inner{
+            background: #FFFF00;
+            color: #fff;
+            padding: 1em;
+            width: 250px;
+            border-radius: 10px;
+            clip-path: circle(10% at 90% 20%);
+            transition: .5s ease-in-out;
+        }
+        .inner span{
+            float: right;
+            font-weight: 700;
+            font-size: 24px;
+            line-height: 12px;
+            margin-right: 2.5%;
+            transition: color .5s;
+        }
+        .inner p{
+            font-size: 0.8em;
+        }
+        .inner:hover{
+            clip-path: circle(75%);
+            background: #00BFFF;
+        }
+        .inner:hover span{
+            color: rgba(255, 255, 255, 0);
+        }
+    </style>
+</head>
+<body>
+    <div class="inner">
+        <span>i</span>
+        <h1>你好</h1>
+        <p>这是一张卡，它会告诉你一些重要的信息</p>
+    </div>
+</body>
+</html>

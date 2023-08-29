@@ -1,0 +1,212 @@
+<!-- 总结：
+1.准备整体结构和基本样式
+2.准备屏幕内基本样式
+3.调试滤镜，添加动画
+4.添加js实现数字上涨
+
+本质揭秘：
+1.屏幕外和屏幕内两块区域（背景图和定位）
+2.电量外围嵌套的正圆和不规则图（伪元素定位）
+3.添加色相旋转、位移动画
+4.添加滤镜（对比度 高斯模糊 色相角度） -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* 手机外壳 */
+        .phone{
+            margin: 20px auto;
+            width: 375px;
+            height: 765px;
+            background: url("image/手机背景图.jpg");
+            background-size: cover; /* 缩放模式：当背景图片的尺寸大于或等于其容器的大小时，背景图片会自动缩放以适应容器的大小。 */
+            box-sizing: border-box;
+            padding-top: 16px;
+        }
+        /* 手机屏幕 */
+        .screen{
+            width: 330px;
+            height: 657px;
+            margin: 0 auto;
+            background: #000;
+            border-radius: 45px 45px 0 0;
+            position: relative;
+        }
+        /* 充电数字 */
+        .screen .number{
+            width: 200px;
+            height: 200px;
+            position: absolute;
+            left: 50%;
+            top: 15%;
+            transform: translateX(-50%);
+            z-index: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 2.5em;
+            color: #fff;
+        }
+        /* 遮罩   颜色变换 */
+        .screen .ascending{
+            width: 100%;
+            height: 100%;
+            background: #050807;
+            border-radius: 45px 45px 0 0;
+            position: relative;
+            filter: contrast(15); /* 用于调整图像的对比度，表示对比度的增加程度15% */
+            animation: animation1 5s linear infinite;
+        }
+        .screen .circle{
+            width: 300px;
+            height: 300px;
+            position: absolute;
+            top: 7%;
+            left: 50%;
+            margin-left: -150px;
+            filter: blur(8px); /* 增加模糊度 */
+            animation: animation2 5s linear infinite;
+        }
+        /* 数字周围圆圈的两个 */
+        .circle::before{
+            content: '';
+            width: 200px;
+            height: 200px;
+            background-color: #4dff03;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%,-50%);
+            border-radius: 42% 38% 63% 49%/45%;
+        }
+        .circle::after{
+            content: '';
+            width: 178px;
+            height: 178px;
+            background-color: #000;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%,-50%);
+            border-radius: 50%;
+        }
+        .screen .bubble{       
+            width: 20px;
+            height: 20px;
+            background-color: #4dff03;
+            border-radius: 100%;
+            position: absolute;
+            left: 50%;
+            bottom: 0;
+            transform: translateX(-50%);
+            z-index: 2;
+            filter: blur(5px);
+            animation: animation3 5s ease-in-out infinite;
+        }
+        /* 冒泡底座 */
+        .bubble-home{
+            width: 100px;
+            height: 40px;
+            background-color: #4dff03;
+            position: absolute;
+            left: 50%;
+            bottom: 0;
+            margin-left: -50px;
+            border-radius: 100px 100px 0 0;
+        }
+        .screen .bubble-home{
+            filter: blur(8px);
+        }
+        @keyframes animation1{
+            0%{
+                filter: contrast(15) hue-rotate(0); /* hue-rotate(0)表示色相旋转角度为0 */
+            }
+            100%{
+                filter: contrast(15) hue-rotate(360deg);
+            }
+        }
+        @keyframes animation2{
+            0%{
+                transform: rotate(0);
+            }
+            100%{
+                transform: rotate(360deg);
+            }
+        }
+        @keyframes animation3{
+            0%{
+                bottom: 0;
+            }
+            100%{
+                bottom: calc(80% - 170px);
+            }
+        }
+        .bubble:nth-child(1){
+            width: 20px;
+            height: 20px;
+            left: 50%;
+            animation-duration: 5s;
+            animation-delay: 1s;
+        }
+        .bubble:nth-child(2){
+            width: 20px;
+            height: 20px;
+            left: 49%;
+            animation-duration: 4s;
+            animation-delay: 2s;
+        }
+        .bubble:nth-child(3){
+            width: 20px;
+            height: 20px;
+            left: 47%;
+            animation-duration: 3s;
+            animation-delay: 3s;
+        }
+        .bubble:nth-child(4){
+            width: 20px;
+            height: 20px;
+            left: 53%;
+            animation-duration: 2s;
+            animation-delay: 4s;
+        }
+        .bubble:nth-child(5){
+            width: 20px;
+            height: 20px;
+            left: 51%;
+            animation-duration: 1s;
+            animation-delay: 5s;
+        }
+    </style>
+</head>
+<body>
+    <div class="phone">
+        <div class="screen">
+            <div class="number">68.6%</div>
+            <div class="ascending">
+                <div class="bubble"></div>
+                <div class="bubble"></div>
+                <div class="bubble"></div>
+                <div class="bubble"></div>
+                <div class="bubble"></div>
+                <div class="bubble-home"></div>
+                <div class="circle"></div>
+            </div>
+        </div>
+    </div>
+    <script>
+        let intNum = 686
+        const timeId = setInterval(()=>{
+            intNum += 1
+            if(intNum>=1000){
+                window.clearInterval(timeId)
+            }
+            document.querySelector(".number").innerHTML = (intNum / 10) + "%"
+        },500)
+    </script>
+</body>
+</html>
+

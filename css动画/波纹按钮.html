@@ -1,0 +1,81 @@
+<!-- 总结：
+1.准备按钮结构和样式
+2.准备波纹结构、样式、动画
+3.通过JS基于鼠标点击位置动态创建波纹
+
+本质揭秘：
+波纹是一个小盒子，添加宽高透明度修改的动画 -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        button{
+            position: relative;
+            outline: none; /* 去除内容边框 */
+            border: none; /* 去除盒子边框 */
+            cursor: pointer;
+            padding: 12px 36px;
+            color: #fff;
+            border-radius: 5px;
+            background: linear-gradient(90deg, #0162c8, #55e7fc); /* 从左到右的线性渐变背景 */
+            box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.4);
+            overflow: hidden; /* 超出容器的内容隐藏 */
+        }
+        span{
+            /* 定位居中 */
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            width: 0;
+            height: 0;
+            opacity: 0.5; /* 半透明 */
+            border-radius: 50%;
+            background-color: #fff;
+            pointer-events: none; /* 无法响应鼠标交互，包括点击、悬停等操作 */
+            /* animation: animate 1s linear infinite; */
+            animation: animate 1s linear 1; /* JS优化 */
+        }
+        @keyframes animate{
+            0%{
+                width: 0;
+                height: 0;
+                opacity: 0.5;
+            }
+            100%{
+                width: 500px;
+                height: 500px;
+                opacity: 0; /* 全透明 */
+            }
+        }
+    </style>
+</head>
+<body>
+    <button>
+        Click Me~
+        <!-- <span></span> -->
+    </button>
+    <script>
+        // 优化：动画只需要一次，鼠标点击创建波纹
+        const button = document.querySelector('button')
+        // 注册点击事件
+        button.addEventListener('click',function(e){
+            // 计算波纹按钮所需要的坐标，找出鼠标相对于按钮的位置
+            let boundingBox = this.getBoundingClientRect() // getBoundingClientRect()方法返回一个包含按钮边界框信息的对象。
+            let x = e.clientX - boundingBox.left
+            let y = e.clientY - boundingBox.top
+            // 动态创建波纹按钮，添加到盒子中
+            let ripple = document.createElement('span')
+            ripple.style.left = x + 'px'
+            ripple.style.top = y + 'px'
+            this.appendChild(ripple)
+            // 动画结束移除波纹
+            ripple.addEventListener('animationend',()=>ripple.remove())
+        })
+    </script>
+</body>
+</html>

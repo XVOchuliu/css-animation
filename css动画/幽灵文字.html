@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .mask{
+            height: 100vh;
+            background-color: #000;
+            color: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 150px;
+        }
+        .mask span{
+            animation: blurOut 4s ease-in-out infinite;
+            animation-delay: calc(.2s*var(--i)); /* 基于CSS变量添加延迟 */
+        }
+        @keyframes blurOut {
+            0%{
+                opacity: 1; /* 透明度 */
+                filter: blur(0px); /* 模糊度 */
+                transform: scale(1); /* 缩放 */
+            }
+            30%{
+                opacity: 0;
+                filter: blur(20px);
+                transform: scale(2);
+            }
+            60%, 100%{
+                opacity: 1;
+                filter: blur(0px);
+                transform: scale(1);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="mask">
+        <span style="--i:1">W</span>
+        <span style="--i:2">E</span>
+        <span style="--i:3">L</span>
+        <span style="--i:4">C</span>
+        <span style="--i:5">O</span>
+        <span style="--i:6">M</span>
+        <span style="--i:7">E</span>
+    </div>
+</body>
+</html>

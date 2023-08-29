@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .inputBox{
+            position: relative;
+            width: 250px;
+        }
+        .inputBox input{
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 1em;
+            outline: none; /* 去除轮廓 */
+        }
+        .inputBox span{
+            position: absolute;
+            left: 0;
+            top: 0;
+            padding: 10px;
+            font-size: 1em;
+            pointer-events: none; /* 去除指针事件 */
+            color: #ccc;
+        }
+        /* 内容有效或获得焦点时,调整在后面紧邻的span大小 */
+        .inputBox input:valid ~ span,
+        .inputBox input:focus ~ span{
+            color: blue;
+            transform: translateX(10px) translateY(-7px);
+            font-size: 0.65em;
+            padding: 0 10px;
+            background-color: #fff;
+        }
+        .inputBox span{
+            transition: all 0.5s;
+        }
+    </style>
+</head>
+<body>
+    <div class="inputBox">
+        <!-- required:属性规定必需在提交表单之前填写输入字段 -->
+        <input type="text" required>
+        <span>Your Name</span>
+    </div>
+</body>
+</html>

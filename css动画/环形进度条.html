@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* 父盒子是一个方形，便于居中 */
+        .percent{
+            position: relative;
+            width: 150px;
+            height: 150px;
+        }
+        .percent svg{
+            width: 150px;
+            height: 150px;
+        }
+        /* 制作圆环 */
+        .percent svg circle{
+            fill: none; /* 去掉填充色 */
+            stroke-width: 10; /* 添加描边 */
+            stroke: #000;
+            transform: translate(5px, 5px); /* 右下平移微调 */
+            stroke-dasharray: 440; /* 虚线长度 = 圆的周长（2*70*3.14） */
+            stroke-dashoffset: 440; /*偏移量，控制空白间隙 */
+        } 
+        /* 两个重叠圆，第一个圆100%显示 */
+        .percent svg circle:nth-child(1){
+            stroke-dashoffset: 0;
+            stroke: #f3f3f3;
+        }
+        /* 第二个圆偏移，显示百分比进度 */
+        .percent svg circle:nth-child(2){
+            stroke-dashoffset: calc(440 - 440*(20/100));
+            stroke: #21a0ff;
+        }
+        .percent .number{
+            /* 文字定位 */
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            /* 文字居中 */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #333;
+        }
+        .percent .number span:nth-child(1){
+            font-size: 48px;
+        }
+        .percent .number span:nth-child(2){
+            font-size: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="percent">
+        <!-- 两个重叠的svg圆和百分比文字 -->
+        <svg>
+            <circle cx="70" cy="70" r="70"/>
+            <circle id="circle" cx="70" cy="70" r="70"/>
+        </svg>
+        <div class="number">
+            <h3>
+                <span id="percent">20</span>
+                <span>%</span>
+            </h3>
+        </div>
+    </div>
+    <script>
+        const percentBox = document.querySelector('#percent')
+        const circle = document.querySelector('#circle')
+        let percent = 20 // 声明百分比
+        // 每隔1.5s，进度条往上累加一个随机百分比
+        const timer = setInterval(()=>{
+            percent += Math.ceil(Math.random()*30)
+            if(percent>100){
+                percent = 100
+                clearInterval(timer)
+            }
+            // 设置样式
+            percentBox.innerHTML = percent
+            circle.style.strokeDashoffset = 'calc(440 - 440*(' + percent + '/100))'
+        },1500)
+    </script>
+</body>
+</html>

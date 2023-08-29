@@ -1,0 +1,164 @@
+<!-- 总结：
+1.准备基本结构架子（5个li，每个li内图标+文字）
+2.js动态控制类名，设计文字和图标上浮动画
+3.定位添加底部遮罩背景，实现内凹效果
+
+本质揭秘：
+1.js动态控制激活状态类名
+2.文字和图标激活时上浮
+3.定位底色盒子配合伪元素（圆角+阴影），遮罩实现内凹 -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="http://at.alicdn.com/t/c/font_4144272_3vtq4renm6e.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: #222327;
+        }
+        .nav {
+            width: 400px;
+            height: 70px;
+            padding: 0 25px;
+            border-radius: 10px;
+            background-color: #fff;
+            position: relative;
+            display: flex;
+        }
+        .nav li {
+            width: 70px;
+            height: 70px;
+            z-index: 1;
+            position: relative;
+            list-style: none;
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        .nav li i {
+            position: relative;
+            display: block;
+            height: 70px;
+            line-height: 70px;
+            font-size: 24px;
+            text-align: center;
+            transition: all 0.5s;
+        }
+        .nav li span {
+            position: absolute;
+            font-size: 12px;
+            letter-spacing: 2px;
+            transition: all .5s;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        .nav li.active i {
+            transform: translateY(-35px);
+            color: #fff;
+        }
+        .nav li.active span {
+            opacity: 1;
+            transform: translateY(10px);
+        }
+        .indicator {
+            position: absolute;
+            top: -50%;
+            width: 70px;
+            height: 70px;
+            background: #2196f3;
+            border-radius: 50%;
+            border: 6px solid #222327;
+            transition: all .5s;
+        }
+        .indicator::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: -22px;
+            width: 20px;
+            height: 20px;
+            background-color: #fff;
+            border-top-right-radius: 20px;
+            box-shadow: 1px -10px 0 0 #222327;
+        }
+        .indicator::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            right: -22px;
+            width: 20px;
+            height: 20px;
+            background-color: #fff;
+            border-top-left-radius: 20px;
+            box-shadow: -1px -10px 0 0 #222327;
+        }
+        li:nth-child(1).active~.indicator {
+            transform: translateX(calc(70px * 0));
+        }
+        li:nth-child(2).active~.indicator {
+            transform: translateX(calc(70px * 1));
+        }
+        li:nth-child(3).active~.indicator {
+            transform: translateX(calc(70px * 2));
+        }
+        li:nth-child(4).active~.indicator {
+            transform: translateX(calc(70px * 3));
+        }
+        li:nth-child(5).active~.indicator {
+            transform: translateX(calc(70px * 4));
+        }
+    </style>
+</head>
+<body>
+    <!-- 导航 -->
+    <ul class="nav">
+        <li class="active">
+            <i class="iconfont icon-home"></i>
+            <span>主页</span>
+        </li>
+        <li>
+            <i class="iconfont icon-envelope"></i>
+            <span>邮箱</span>
+        </li>
+        <li>
+            <i class="iconfont icon-comment"></i>
+            <span>消息</span>
+        </li>
+        <li>
+            <i class="iconfont icon-heart"></i>
+            <span>喜欢</span>
+        </li>
+        <li>
+            <i class="iconfont icon-user"></i>
+            <span>个人</span>
+        </li>
+        <div class="indicator"></div>
+    </ul>
+    <script>
+        const lis = document.querySelectorAll('.nav li');
+        lis.forEach(li => {
+          li.addEventListener('click', function () {
+            lis.forEach(item => {
+              item.classList.remove('active');
+              this.classList.add('active')
+            })
+          })
+        })
+    </script>
+</body>
+</html>

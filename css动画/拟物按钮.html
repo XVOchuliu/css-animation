@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            padding: 30px;
+            background-color: #f0f0ee; /* 底色 */
+        }
+        .btn{
+            width: 100px;
+            height: 100px;
+            background-color: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 20px;
+            font-size: 50px;
+            color: #333;
+            user-select: none; /* 禁止用户选择（或复制）文本内容 */
+            cursor: pointer; /* 用于改变鼠标的样式：手型 */
+            text-shadow: 2px 2px 2px #ccc; /* 文字阴影，立体效果 */
+            box-shadow: 
+                20px 20px 30px rgba(0, 0, 0, 0.2), 
+                -20px -20px 30px rgba(255, 255, 255, 1); /* 盒子阴影 */
+            transform: all 0.4s ease-out;
+        }
+        .btn:hover{
+            box-shadow: 
+                0 0 0 rgba(0, 0, 0, 0.2), 
+                0 0 0 rgba(255, 255, 255, 0.8), 
+                inset 10px 10px 20px rgba( 0, 0, 0, 0.1),
+                inset -10px -10px 20px rgba(255, 255, 255, 1); /* 内阴影：出现在边框内部 */
+            font-size: 48px;
+        }
+    </style>
+</head>
+<body>
+    <div class="btn">D</div>
+</body>
+</html>

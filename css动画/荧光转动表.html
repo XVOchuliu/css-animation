@@ -1,0 +1,131 @@
+<!-- 总结：
+1.准备结构和基本样式
+2.准备指针和内容
+3.设置荧光效果
+4.准备动画
+
+本质揭秘：
+1.准备一个环形（圆角边框和盒子阴影）
+2.动画相同，两根指针旋转速度不同（帧动画）
+3.渐变背景色，做荧光效果（混合模式） -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: #222;
+        }
+        .circle{
+            position: relative;
+            width: 500px;
+            height: 500px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 50%;
+            box-shadow: 
+                0 0 0 2px #fff5,
+                0 0 0 20px #333,
+                0 0 0 22px #fff,
+                0 0 50px #fff,
+                0 0 450px #fff;
+        }
+        .circle::before{
+            content: "";
+            position: absolute;
+            width: 2px;
+            height: 170px;
+            border-radius: 2px;
+            background: linear-gradient(0deg,transparent,#fff);
+            transform-origin: bottom;
+            animation: animate 20s steps(60) infinite; /*steps(60)：这表示动画的步骤数。每个步骤之间的时间间隔为60ms。 */
+        }
+        .circle::after{
+            content: "";
+            position: absolute;
+            width: 4px;
+            height: 130px;
+            border-radius: 2px;
+            background: linear-gradient(0deg,transparent,#fff);
+            transform-origin: bottom;
+            animation: animate 120s steps(60) infinite;
+        }
+        ul li{
+            position: absolute;
+            top: 10px;
+            list-style: none;
+            transform-origin: 0 240px;
+            font-size: 2.5em;
+            font-weight: 700;
+            text-transform: uppercase; /* 更改文本的大小写 */
+            font-family: 黑体;
+            transform: rotate(calc(21deg * var(--i)));
+        }
+        ul li span{
+            display: inline-block;
+            color: #fff;
+            text-shadow: 
+                0 0 15px #fff,
+                0 0 35px #fff,
+                0 0 75px #fff,
+                0 0 150px #fff;
+            transform: rotate(calc(-21deg * var(--i)));
+        }
+        body::before{
+            content: "";
+            position: absolute;
+            inset: 0; /* 内边距 */
+            background: linear-gradient(#08ff12, #0791ff);
+            z-index: 10;
+            pointer-events: none; /* 鼠标事件（如点击、悬停等）将不会触发该元素的任何操作 */
+            mix-blend-mode: multiply; /* 用于指定两个或多个图像之间的混合模式 */
+            /* multiply混合模式会将两个图像的像素值相乘，然后将结果向下舍入到最接近的整数 */
+        }
+        @keyframes animate{
+            0%{
+                transform: translate(-50%,-50%) rotate(0deg);
+            }
+            100%{
+                transform: translate(-50%,-50%) rotate(360deg);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="circle">
+        <ul>
+            <li style="--i:-4"><span>♣</span></li>
+            <li style="--i:-3"><span>☯</span></li>
+            <li style="--i:-2"><span>♕</span></li>
+            <li style="--i:-1"><span>x</span></li>
+            <li style="--i:0"><span>y</span></li>
+            <li style="--i:1"><span>g</span></li>
+            <li style="--i:2"><span>♫</span></li>
+            <li style="--i:3"><span>❀</span></li>
+            <li style="--i:4"><span>☣</span></li>
+            <li style="--i:5"><span>❤</span></li>
+            <li style="--i:6"><span>❦</span></li>
+            <li style="--i:7"><span>✡</span></li>
+            <li style="--i:8"><span>♨</span></li>
+            <li style="--i:9"><span>ღ</span></li>
+            <li style="--i:10"><span>☃</span></li>
+            <li style="--i:11"><span>☪</span></li>
+            <li style="--i:12"><span>♤</span></li>
+        </ul>
+    </div>
+</body>
+</html>

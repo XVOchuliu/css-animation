@@ -1,0 +1,75 @@
+<!-- 总结：
+1.准备爱心结构和样式（一个方形+两个半圆）
+2.设计爱心动画（缩放跳动）
+3.渐变背景
+
+本质揭秘：
+1.逆时针旋转-45度 
+2.伪元素构建半圆通过定位成爱心形状 
+3.动画缩放效果 -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .heart{
+            width: 70px;
+            height: 70px;
+            background-color: #f20044;
+            position: relative;
+            transform: rotate(-45deg); /* 逆时针旋转90度 */
+            box-shadow: -10px 10px 90px #f20044;
+            animation: bounce .8s linear infinite;
+        }
+        body{
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #0b1522;
+            background: linear-gradient(45deg, #fffdfe, #d63fb2);
+        }
+        /* 左半边圆 */
+        .heart::before{
+            content: '';
+            position: absolute;
+            height: 70px;
+            width: 70px;
+            background: #f20044;
+            top: -50%;
+            border-radius: 50px;
+            box-shadow: -10px 10px 90px #f20044;
+        }
+        /* 右半边圆 */
+        .heart::after{
+            content: '';
+            position: absolute;
+            height: 70px;
+            width: 70px;
+            background: #f20044;
+            right: -50%;
+            border-radius: 50px;
+            box-shadow: -10px 10px 90px #f20044;
+        }
+        @keyframes bounce{
+            0%{
+                transform: rotate(-45deg) scale(1.07);
+            }
+            80%{
+                transform: rotate(-45deg) scale(1);
+            }
+            100%{
+                transform: rotate(-45deg) scale(0.8);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="heart"></div>
+</body>
+</html>

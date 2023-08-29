@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* 引入谷歌字体 */
+        @import url("https://fonts.googleapis.com/css2?family=Gluten&display=swap");
+        * {
+            margin: 0;
+            padding: 0;
+        } 
+        body {
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            background: linear-gradient(to right, #fee0a2, #f98d92, #ce65af, #8e51d3);
+        }
+        .mask {
+            position: absolute;
+            top:0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: #333838;
+        }
+        label {
+            font-family: "Gluten";
+            font-size: 128px;
+            z-index: 1;
+            color: #fff;
+            margin: -80px 0 32px;
+        }
+        label::after {
+            content: "%";
+        }
+        .range {
+            z-index: 2;
+            width: 50vw;
+            height: 16px;
+            background: rgba(88, 36, 36, 0.8);
+            appearance: none;
+            border-radius: 8px;
+            box-shadow: inset 3px 3px 5px -1px #000;
+        }
+        /* 滑块 */
+        .range::-webkit-slider-thumb {
+            width: 4vw;
+            height: 4vw;
+            background: #eee;
+            appearance: none;
+            border-radius: 50%;
+            cursor: pointer;
+            box-shadow: 5px 5px 8px -1px #000;
+            transition: box-shadow 0.3s ease-in-out;
+        }
+        /* 滑动条悬停时滑块的样式变化 */
+        .range:hover::-webkit-slider-thumb {
+            background: #fff;
+            box-shadow: 3px 3px 5px -1px #000;
+        }
+    </style>
+</head>
+<body>
+    <div class="mask"></div>
+    <label class="value">0</label>
+    <input type="range" class="range" value="0" min="0" max="100"/>
+    <script>
+        const value = document.querySelector('.value')
+        const range = document.querySelector('.range')
+        const mask = document.querySelector('.mask')
+        function move(e) {
+            const num = e.target.value
+            const hue = "hue-rotate(" + num + "deg)"
+            value.textContent = num;
+            value.style.filter = hue
+            range.style.filter = hue
+            mask.style.left = num + 'vw'
+            mask.style.width = 100 - num + 'vw'
+            mask.style.filter = hue
+        }
+        range.addEventListener('change',move)
+        range.addEventListener('mousemove',move)
+    </script>
+</body>
+</html>

@@ -1,0 +1,101 @@
+<!-- 总结：
+1.准备图标结构（一个按钮，八个图标）
+2.设置样式（大盒子居中，图标定位）
+3.设置hover旋转（定位到左侧，绕中心点旋转）
+
+本质揭秘：
+小图标定位到左侧，绕中心旋转 -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://at.alicdn.com/t/c/font_4090357_z2qpnic06um.css">
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+        body{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: linear-gradient(45deg, deeppink, skyblue);
+        }
+        .menu{
+            position: relative;
+            width: 200px;
+            height: 200px;
+            /* background-color: orange; */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .btn{
+            position: absolute;
+            z-index: 1000;
+            width: 60px;
+            height: 60px;
+            background-color: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 50%;
+            box-shadow: 0 3px 4px rgba(0, 0, 0, 0.15);
+            cursor: pointer;
+            transition: all 1.25s;
+        }
+        .btn i{
+            font-size: 32px;
+        }
+        .menu span{
+            width: 40px;
+            height: 40px;
+            background-color: #fff;
+            box-shadow: 0 3px 4px rgba(0, 0, 0, 0.15);
+            position: absolute;
+            left: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 50%;
+            cursor: pointer;
+            /* 绕正中心旋转 */
+            /* 将旋转缩放和skew操作的原始点设置为容器中心（默认为50% 50%）向右移动100px，而原始点不会超出容器边界。 */
+            transform-origin: 100px; 
+            transition-delay: calc(.1s * var(--i));
+            transition: .5s;
+            transform: rotate(0deg) translateX(80px); /* 8个图标居中显示 */
+        }
+        .menu:hover span{
+            transform: rotate(calc(360deg / 8*var(--i))); /* rotate函数用于旋转元素 */
+        }
+        /* 保证8个图标自带负角度，转好后是正的 */
+        .menu span i{
+            transform: rotate(calc(360deg / -8*var(--i)));
+        }
+        /* 中心按钮，设置辅助旋转效果 */
+        .menu:hover .btn{
+            transform: rotate(315deg);
+        }
+    </style>
+</head>
+<body>
+    <div class="menu">
+        <div class="btn">
+            <i class="iconfont icon-add"></i></div>
+        <span style="--i: 0;"><i class="iconfont icon-home"></i></span>
+        <span style="--i: 1;"><i class="iconfont icon-more"></i></span>
+        <span style="--i: 2;"><i class="iconfont icon-gift"></i></span>
+        <span style="--i: 3;"><i class="iconfont icon-setting"></i></span>
+        <span style="--i: 4;"><i class="iconfont icon-message"></i></span>
+        <span style="--i: 5;"><i class="iconfont icon-cart"></i></span>
+        <span style="--i: 6;"><i class="iconfont icon-money"></i></span>
+        <span style="--i: 7;"><i class="iconfont icon-star"></i></span>
+    </div>
+</body>
+</html>

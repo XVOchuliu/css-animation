@@ -1,0 +1,84 @@
+<!-- 总结：
+1.准备结构和基本样式
+2.设置渐变背景
+3.设置hover上移效果
+
+本质揭秘：
+1.伪元素设置两个面，定位重叠
+2.设置线性渐变（通过角度控制方向）
+3.设置滤镜高斯模糊
+4.通过过渡和鼠标悬停完成动画效果 -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        .container .box{
+            position: relative;
+            width: 320px;
+            height: 400px;
+            background: teal;
+            margin: 40px;
+            transform: .5s;
+        }
+        body{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: #111;
+        }
+        .container{
+            display: flex;
+            position: relative;
+            justify-content: center;
+            align-items: center;
+        }
+        .container .box::before,
+        .container .box::after{
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg,#ffbc00,#ff0058);
+        }
+        .container .box::after{
+            filter: blur(50px);
+        }
+        .container .box:nth-child(2):before,
+        .container .box:nth-child(2):after{
+            background: linear-gradient(315deg, #03a9f4, #ff0058);
+        }
+        .container .box:nth-child(3):before,
+        .container .box:nth-child(3):after{
+            background: linear-gradient(135deg, #4dff03, #00d0ff);
+        }
+        .container .box span{
+            position: absolute;
+            inset: 6px;
+            background: rgba(0, 0, 0, .6);
+            z-index: 2;
+        }
+        .container .box:hover{
+            transform: translateY(-20px);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="box"><span></span></div>
+        <div class="box"><span></span></div>
+        <div class="box"><span></span></div>
+    </div>
+</body>
+</html>

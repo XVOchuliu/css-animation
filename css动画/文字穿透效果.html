@@ -1,0 +1,63 @@
+<!-- 总结：
+1.设置body大盒子
+2.准备蒙层和文字
+3.添加文字穿透效果
+4.基于动画调整背景定位
+
+本质揭秘：
+1.给文字设置背景裁切，模拟穿透效果
+2.核心语法：background-clip -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            height: 100vh;
+            background: url('image/bg3.jpg') no-repeat center center/cover;
+            background-size: cover;
+            animation: animate 10s linear infinite alternate;
+        }
+        .model {
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.3);
+        }
+        .model h1 {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14vw;
+            background: url('image/bg3.jpg') no-repeat center center/cover;
+            -webkit-text-stroke: 4px #fff;
+            color: transparent;
+            background-clip: text;
+            -webkit-background-clip: text;
+            animation: animate 10s linear infinite alternate;
+        }
+        @keyframes animate {
+            0% {
+                background-position: 0 0;
+            }
+            100% {
+                background-position: 0% 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="model">
+        <h1>永远 爱你</h1>
+    </div>
+</body>
+</html>
