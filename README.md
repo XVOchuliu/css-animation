@@ -5,6 +5,8 @@
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;下载解压该文件，直接用自己的浏览器打开即可
 # 动画  
 * 悬浮动画
+
+  ![image](https://github.com/XVOchuliu/CSS-animation/blob/master/%E5%B1%95%E7%A4%BA%E5%8A%A8%E7%94%BB/%E6%82%AC%E6%B5%AE%E5%8A%A8%E7%94%BB.gif)
 * 发光球体
 * 跳动文字
 * 输入框动效
