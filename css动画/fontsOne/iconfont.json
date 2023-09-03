@@ -1,0 +1,23 @@
+{
+  "id": "",
+  "name": "",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon-",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "5320519",
+      "name": "太阳",
+      "font_class": "taiyang",
+      "unicode": "e62e",
+      "unicode_decimal": 58926
+    },
+    {
+      "icon_id": "30044911",
+      "name": "月亮",
+      "font_class": "moon",
+      "unicode": "e6c2",
+      "unicode_decimal": 59074
+    }
+  ]
+}

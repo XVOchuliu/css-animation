@@ -1,0 +1,145 @@
+<!-- 总结：
+1.准备基本结构（日月模式容器去、背景）
+2.设置黑夜模式样式（用边框圆角结合盒子阴影完成月亮）
+3.设置白天模式样式（用边框圆角完成太阳）
+4.设置切换按钮的基本结构和样式
+5.注册按钮点击事件，点击之后切换light类名完成日月切换
+
+本质揭秘：通过设置盒子的边框圆角、阴影、背景模糊的组合，模拟太阳、月亮、海水的效果，然后配合js进行类名切换，完成日月切换效果 -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="fontsOne/iconfont.css">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+        }
+        #container {
+            height: 100vh;
+        }
+        .bg {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+        }
+        .sun {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 600px;
+            height: 600px;
+            background-color: orange;
+            border-radius: 50%;
+        }
+        .moon {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(calc(-50% + -160px), calc(-50% + -180px));
+            width: 600px;
+            height: 600px;
+            /* 通过阴影绘制月亮 */
+            box-shadow: 160px 180px 0 cyan;
+            border-radius: 50%;
+        }
+        .sea {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            height: 35%;
+            /* 背景模糊制造大海的感觉 */
+            backdrop-filter: blur(100px);
+            -webkit-backdrop-filter: blur(100px);
+            z-index: 100;
+        }
+        .sun-box,
+        .moon-box,
+        .bg {
+            transition: 1s ease-in-out;
+        }
+        .sun-box,
+        .moon-box {
+            position: relative;
+            overflow: hidden;
+        }
+        /* 白天 */
+        .light .sun-box {
+            height: 100%;
+        }
+        .light .moon-box {
+            height: 0;
+        }
+        .light .bg {
+            background-color: #ffeea2;
+        }
+        /* 夜晚 */
+        .dark .sun-box {
+            height: 0;
+        }
+        .dark .moon-box {
+            height: 100%;
+        }
+        .dark .bg {
+            background-color: #040720;
+        }
+        /* 切换按钮样式 */
+        .btn-box {
+            position: absolute;
+            top: 5px;
+            right: 100px;
+            z-index: 999;
+            display: flex;
+        }
+        .btn-box div {
+            width: 90px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.7);
+            margin: 5px;
+            line-height: 40px;
+            text-align: center;
+            font-size: 14px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .btn-box div:hover {
+            background: #fff;
+        }
+    </style>
+</head>
+<body>
+    <div class="btn-box">
+        <div class="sunBtn">
+          <span class="iconfont icon-taiyang"></span> 白天模式
+        </div>
+        <div class="moonBtn">
+          <span class="iconfont icon-moon"></span> 黑夜模式
+        </div>
+    </div>
+    <div class="dark" id="container">
+      <div class="bg"></div>
+      <div class="moon-box">
+        <div class="moon"></div>
+      </div>
+      <div class="sun-box">
+        <div class="sun"></div>
+      </div>
+      <div class="sea"></div>
+    </div>
+    <script>
+        const sunBtn = document.querySelector('.sunBtn')
+        const moonBtn = document.querySelector('.moonBtn')
+        sunBtn.addEventListener('click',function () {
+          document.getElementById('container').setAttribute('class', 'light');
+        })
+        moonBtn.addEventListener('click',function () {
+          document.getElementById('container').setAttribute('class', 'dark');
+        })
+      </script>
+</body>
+</html>

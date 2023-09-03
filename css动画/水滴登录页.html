@@ -1,0 +1,196 @@
+<!-- 总结：
+1.准备基本结构（表单容器和内容，两个按钮）
+2.分别设置每个容器的边框圆角、阴影、高亮
+3.设置hover时容器变圆效果，完成水滴效果
+
+本质揭秘：通过设置容器的边框圆角、阴影、高亮的组合，模拟水滴的效果，然后配合hover时变圆，完成鼠标移入时的动态效果 -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            height: 100vh;
+            background: #eff0f4;
+            overflow: hidden;
+        }
+        .box {
+            position: relative;
+            display: flex;
+            justify-content: space-between;
+            margin: 150px auto;
+            width: 470px;
+        }
+        .box .content {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+            align-items: center;
+            width: 350px;
+            height: 350px;
+            padding: 60px 20px;
+            box-shadow: 
+                inset 20px 20px 20px rgba(0, 0, 0, 0.05),
+                25px 35px 20px rgba(0, 0, 0, 0.05), 25px 30px 30px rgba(0, 0, 0, 0.05),
+                inset -20px -20px 25px rgba(255, 255, 255, 0.9);
+        }
+        .box .content {
+            border-radius: 52% 48% 33% 67% / 38% 45% 55% 62%;
+            transition: 0.5s;
+        } 
+        .box .content:hover {
+            border-radius: 50%;
+        }
+        /* 高光1 */
+        .box .content::before {
+            content: "";
+            position: absolute;
+            top: 50px;
+            left: 85px;
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            background: #fff;
+            opacity: 0.9;
+        }
+        /* 高光2 */
+        .box .content::after {
+            content: "";
+            position: absolute;
+            top: 90px;
+            left: 110px;
+            width: 15px;
+            height: 15px;
+            border-radius: 50%;
+            background: #fff;
+            opacity: 0.9;
+        }
+        .box .content div {
+            position: relative;
+            width: 225px;
+            border-radius: 25px;
+            box-shadow: 
+                inset 2px 5px 10px rgba(0, 0, 0, 0.1),
+                inset -2px -5px 10px rgba(255, 255, 255, 1),
+                15px 15px 10px rgba(0, 0, 0, 0.05), 15px 10px 15px rgba(0, 0, 0, 0.025);
+        }
+        /* 高光 */
+        .box .content div::before {
+            content: "";
+            position: absolute;
+            top: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 65%;
+            height: 5px;
+            background: rgba(255, 255, 255, 0.5);
+            border-radius: 5px;
+        }
+        .box .content input {
+            width: 100%;
+            border: none;
+            outline: none;
+            background: transparent;
+            font-size: 16px;
+            padding: 10px 15px;
+        } 
+        .box .content input[type="submit"] {
+            color: #fff;
+            cursor: pointer;
+        }
+        .box .content div:last-child {
+            width: 120px;
+            background: #ff0f5b;
+            box-shadow: 
+                inset 2px 5px 10px rgba(0, 0, 0, 0.1),
+                15px 15px 10px rgba(0, 0, 0, 0.05), 15px 10px 15px rgba(0, 0, 0, 0.025);
+            transition: 0.5s;
+        }
+        .box .content div:last-child:hover {
+            width: 150px;
+        }
+        .btns {
+            position: absolute;
+            right: 0;
+            bottom: 0;
+            width: 120px;
+            height: 120px;
+            background: #c61dff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            text-decoration: none;
+            color: #fff;
+            font-size: 14px;
+            box-shadow: 
+                inset 10px 10px 10px rgba(190, 1, 254, 0.05),
+                15px 25px 10px rgba(190, 1, 254, 0.1), 15px 20px 20px rgba(190, 1, 254, 0.1),
+                inset -10px -10px 15px rgba(255, 255, 255, 0.5);
+            border-radius: 44% 56% 65% 35% / 57% 58% 42% 43%;
+        }
+        .register {
+            bottom: 150px;
+            right: 0px;
+            width: 80px;
+            height: 80px;
+            border-radius: 49% 51% 52% 48% / 63% 59% 41% 37%;
+            background: #01b4ff;
+            box-shadow: 
+                inset 10px 10px 10px rgba(1, 180, 255, 0.05),
+                15px 25px 10px rgba(1, 180, 255, 0.1), 15px 20px 20px rgba(1, 180, 255, 0.1),
+                inset -10px -10px 15px rgba(255, 255, 255, 0.5);
+        } 
+        .btns::before {
+            content: "";
+            position: absolute;
+            top: 15px;
+            left: 30px;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: #fff;
+            opacity: 0.45;
+        }
+        .register::before {
+            left: 20px;
+            width: 15px;
+            height: 15px;
+        }
+        /* -------------- */
+        .btns {
+            transition: 0.25s;
+        }
+        .btns:hover {
+            border-radius: 50%;
+        }
+    </style>
+</head>
+<body>
+    <div class="box">
+        <div class="content">
+            <h2>登录</h2>
+            <div>
+                <input type="text" placeholder="请输入用户名">
+            </div>
+            <div>
+                <input type="password" placeholder="请输入密码">
+            </div>
+            <div>
+                <input type="submit" value="登录">
+            </div>
+        </div>
+        <a href="#" class="btns">忘记密码</a>
+        <a href="#" class="btns register">注册</a>
+    </div>
+</body>
+</html>
