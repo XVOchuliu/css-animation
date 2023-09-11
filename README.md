@@ -1,6 +1,5 @@
-@description:由于项目开发时遇到各种动画，于是开启了创造动画之旅  
-@time:2023-08-16  
-@author:XVOchuliu                                                                                                                                                                                                
+# 简介  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;由于项目开发时遇到各种动画，于是开启了创造动画之旅  
 # 使用  
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;下载解压该文件，直接用自己的浏览器打开即可
 # 动画  
@@ -126,3 +125,7 @@
   <div align=center><img src="https://github.com/XVOchuliu/CSS-animation/blob/master/%E5%B1%95%E7%A4%BA%E5%8A%A8%E7%94%BB/%E6%B0%B4%E6%BB%B4%E7%99%BB%E5%BD%95%E9%A1%B5.gif"/></div>
 * 日月模式切换
   <div align=center><img src="https://github.com/XVOchuliu/CSS-animation/blob/master/%E5%B1%95%E7%A4%BA%E5%8A%A8%E7%94%BB/%E6%97%A5%E6%9C%88%E6%A8%A1%E5%BC%8F%E5%88%87%E6%8D%A2.gif"/></div>
+# 时间
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2023-08-16  
+# 作者
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;XVOchuliu  
