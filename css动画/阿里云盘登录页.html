@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            background-color: #ecefff;
+            user-select: none; /* 禁用用户在浏览器中选择文本的内容 */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .logo {
+            width: 216px;
+            margin-bottom: 60px;
+        }
+        .login-app {
+            width: 348px;
+            min-height: 200px;
+            margin-bottom: 60px;
+            overflow: hidden;
+            background-color: #fff;
+            border-radius: 12px 12px 20px 20px;
+            /* 避免空格换行缝隙影响布局 */
+            font-size: 0;
+        }
+        input[type="radio"] {
+            /* 单选框要默认隐藏 */
+            display: none;
+        }
+        label.m-btn,
+        label.u-btn,
+        label.q-btn {
+            display: inline-block;
+            background-color: #f5f5f6;
+            font-size: 18px;
+            color: rgba(37, 38, 43, .36);
+            padding: 16px;
+            text-align: center;
+            width: 33.3%;
+            cursor: pointer;
+        }
+        .m-btn {
+            border-top-left-radius: 12px;
+        }
+        .q-btn {
+            border-top-right-radius: 12px;
+        }
+        #msg:checked+.m-btn,
+        #uname:checked+.u-btn,
+        #code:checked+.q-btn {
+            background-color: #fff;
+            color: #25262b;
+            cursor: default;
+        }
+        #msg:checked~#form-bar {
+            transform: translateX(0);
+        }
+        #uname:checked~#form-bar {
+            transform: translateX(-348px);
+        }
+        #code:checked~#form-bar {
+            transform: translateX(-692px);
+        }
+        #form-bar {
+            display: flex;
+            transition: transform .6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            font-size: 16px;
+        }
+        form {
+            flex-shrink: 0;
+            width: 100%;
+            padding: 22px;
+            position: relative;
+        }
+        /* 通用 input 样式 */
+        input {
+            outline: none;
+            width: 100%;
+            height: 46px;
+            margin-bottom: 16px;
+            background-color: rgba(39, 39, 41, .04);
+            border: 1px solid transparent;
+            border-radius: 8px;
+            font-size: 14px;
+            padding: 1px 12px;
+            color: #25262b;
+        }
+        input::placeholder {
+            color: rgba(37, 38, 43, .36);
+        }
+        input:focus {
+            border: 1px solid rgba(99, 125, 255, .48);
+            background-color: #fff;
+        }
+        .m-form .get-btn {
+            padding: 4px 12px;
+            border-radius: 6px;
+            font-size: 14px;
+            color: #637dff;
+            background-color: transparent;
+            border: 1px solid rgba(99, 125, 255, .24);
+            position: absolute;
+            right: 36px;
+            margin: 8px 0;
+        }
+        .login-btn {
+            width: 100%;
+            height: 48px;
+            border: none;
+            border-radius: 10px;
+            background: linear-gradient(129.12deg,#446dff,rgba(99, 125, 255, .75));
+            color: #fff;
+            font-size: 16px;
+            margin-top: 16px;
+            margin-bottom: 60px;
+        }
+        button {
+            cursor: pointer;
+        }
+        .m-form #sure {
+            display: none;
+        }
+        .m-form label.besure {
+            position: absolute;
+            border: 2px solid rgba(132, 133, 141, .2);
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            cursor: pointer;
+            left: 22px;
+            bottom: 45px;
+        }
+        label.besure p {
+            margin: 0;
+            margin-left: 20px;
+            width: 280px;
+            font-size: 12px;
+            line-height: 1.5;
+            color: rgba(37, 38, 43, .36);
+            position: relative;
+            bottom: 3px;
+        }
+        label.besure p a {
+            text-decoration: none; /* 文本不会具有任何下划线、删除线或超链接的样式 */
+            color: #637dff;
+            padding: 0 5px;
+        }
+        #sure:checked+label.besure {
+            background-color: #637dff;
+            }
+        label.besure::after {
+            content: '';
+            border: 2px solid #fff;
+            position: absolute;
+            width: 6px;
+            height: 3px;
+            border-top: none;
+            border-right: none;
+            transform: translate(-50%, -50%) rotate(-45deg);
+            top: 45%;
+            left: 50%;
+        }
+        #sure:not(:checked)~.login-btn {
+            opacity: .5;
+            cursor: not-allowed;
+        }
+        .code {
+            width: 128px;
+            height: 128px;
+            box-shadow: 0px 0px 1px 1px rgba(28, 28, 32, 0.05), 0px 8px 24px rgba(28, 28, 32, 0.12);
+            padding: 8px;
+            border-radius: 10px;
+            position: absolute;
+            transform: translate(-50%, -50%);
+            top: 40%;
+            left: 50%;
+        }
+        .code img {
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <img src="image/阿里云盘.svg" class="logo">
+    <div class="login-app">
+        <!-- 选择登录方式部分 -->
+        <input type="radio" name="opt" id="msg" checked="checked">
+        <label for="msg" class="m-btn">短信登录</label>
+        <input type="radio" name="opt" id="uname">
+        <label for="uname" class="u-btn">账号登录</label>
+        <input type="radio" name="opt" id="code">
+        <label for="code" class="q-btn">扫码登录</label>
+        <!-- 登录表单部分 -->
+        <div id="form-bar">
+        <!-- 短信登录表单 -->
+            <form class="m-form">
+                <input placeholder="请输入手机号码">
+                <input placeholder="请输入验证码"><button class="get-btn">获取验证码</button>
+                <input type="checkbox" id="sure">
+                <label for="sure" class="besure">
+                <p>未注册手机登录时会自动创建新账号，我已阅读并同意<a href="">服务协议</a>和<a href="">隐私权条款</a></p>
+                </label>
+                <button class="login-btn">登录</button>
+            </form>
+            <!-- 账号登录表单 -->
+            <form class="u-form">
+                <input placeholder="请输入手机号码">
+                <input type="password" placeholder="登录密码">
+                <button class="login-btn">登录</button>
+                </form>
+                <!-- 扫码登录表单 -->
+                <form class="q-form">
+                <div class="code">
+                    <img src="image/二维码.png">
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
