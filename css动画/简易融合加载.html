@@ -1,0 +1,72 @@
+<!-- 总结：
+1.准备loading结构、样式
+2.实现边缘融合
+3.设计左右摇摆的动画
+
+本质揭秘：边缘融合
+1.子盒子添加filter：blur拉模糊度
+2.父盒子添加filter：contrast拉对比对
+注意：父盒子必须有背景色 -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            list-style: none; /* 删除列表项前的默认符号 */
+        }
+        .loading{
+            height: 100vh;
+            background-color: #000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            filter: contrast(50);
+        }
+        .left, .right{
+            width: 200px;
+            height: 200px;
+            background-color: #fff;
+            border-radius: 50%;
+            filter: blur(40px);
+        }
+        .left{
+            animation: left 1s alternate infinite ease-in-out;
+        }
+        .right{
+            animation: right 1s alternate infinite ease-in-out;
+        }
+        @keyframes left{
+            from{
+                border-radius: 0;
+                transform: rotate(-45deg) translateX(142px);
+            }
+            to{
+                border-radius: 50%;
+                transform: rotate(45deg) translateX(-80px);
+            }
+        }
+        @keyframes right{
+            from{
+                border-radius: 0;
+                transform: rotate(45deg) translateX(-142px);
+            }
+            to{
+                border-radius: 50%;
+                transform: rotate(-45deg) translateX(80px);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="loading">
+        <div class="left"></div>
+        <div class="right"></div>
+    </div>
+</body>
+</html>

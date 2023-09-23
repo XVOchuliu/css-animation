@@ -1,0 +1,116 @@
+<!-- 总结：
+1.8个小圆球，边缘融合效果
+2.loading文字跳动效果
+
+本质揭秘：
+1.边缘融合：
+    （1）子盒子添加filter：blur模糊
+    （2）父盒子添加filter：contrast拉高对比度
+    注意：父盒子需要有底色，否则无效果
+2.跳动效果：transform：tranlateY变换，配合动画延迟 -->
+
+<!DOCTYPE html>
+  <html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            height: 100vh;
+            padding-bottom: 80px;
+            background-color: #000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+        .loading {
+            width: 300px;
+            height: 300px;
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #000;
+            filter: contrast(15);
+        }
+        .loading span {
+            position: absolute;
+            left: 50px;
+            transform-origin: 100px center;
+            transform: rotate(0deg) translateX(85px);
+            width: 30px;
+            height: 30px;
+            background-color: #fff;
+            border-radius: 50%;
+            animation: show 3s infinite;
+            filter: blur(5px);
+        }
+        @keyframes show {
+            0% {
+                transform: rotate(0deg) translateX(80px);
+            }
+            50%, 100% {
+                transform: rotate(calc(360deg / 8 * var(--i)));
+            }
+            100% {
+                transform: rotate(360deg) translateX(80px);
+            }
+        }
+        .text {
+            font-size: 50px;
+            color: #fff;
+            padding-left: 10px;
+            display: flex;
+        }      
+        @keyframes upDown {
+            0% {
+                transform: translateY(0px);
+            }
+            20% {
+                transform: translateY(-24px);
+            }
+            40%, 100% {
+                transform: translateY(0px);
+            }
+        } 
+        .text span {
+            animation: upDown 1.5s ease-in-out infinite;
+            animation-delay: calc(.1s*var(--i));
+        }
+ 
+    </style>
+</head>
+
+<body>
+    <div class="loading">
+        <span style="--i: 0;"></span>
+        <span style="--i: 1;"></span>
+        <span style="--i: 2;"></span>
+        <span style="--i: 3;"></span>
+        <span style="--i: 4;"></span>
+        <span style="--i: 5;"></span>
+        <span style="--i: 6;"></span>
+        <span style="--i: 7;"></span>
+    </div>
+    <div class="text">
+        <span style="--i: 0">L</span>
+        <span style="--i: 1">o</span>
+        <span style="--i: 2">a</span>
+        <span style="--i: 3">d</span>
+        <span style="--i: 4">i</span>
+        <span style="--i: 5">n</span>
+        <span style="--i: 6">g</span>
+        <span style="--i: 7">.</span>
+        <span style="--i: 8">.</span>
+        <span style="--i: 9">.</span>
+    </div>
+  </body>
+</html>
