@@ -1,8 +1,8 @@
-# 简介  
+# Introduction  
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;由于项目开发时遇到各种动画，于是开启了创造动画之旅  
-# 使用  
+# Method  
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;下载解压该文件，直接用自己的浏览器打开即可
-# 动画  
+# Animation  
 * 悬浮动画
   <div align=center><img src="https://github.com/XVOchuliu/CSS-animation/blob/master/%E5%B1%95%E7%A4%BA%E5%8A%A8%E7%94%BB/%E6%82%AC%E6%B5%AE%E5%8A%A8%E7%94%BB.gif"/></div>
 * 发光球体
@@ -129,7 +129,8 @@
   <div align=center><img src="https://github.com/XVOchuliu/CSS-animation/blob/master/%E5%B1%95%E7%A4%BA%E5%8A%A8%E7%94%BB/%E7%AE%80%E7%BA%A6%E7%99%BB%E5%BD%95%E9%A1%B5.gif"/></div>  
 * 阿里云盘登录页
   <div align=center><img src="https://github.com/XVOchuliu/CSS-animation/blob/master/%E5%B1%95%E7%A4%BA%E5%8A%A8%E7%94%BB/%E9%98%BF%E9%87%8C%E4%BA%91%E7%9B%98%E7%99%BB%E5%BD%95%E9%A1%B5.gif"/></div>
-# 时间
+* 边缘融合加载
+# Time
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2023-08-16  
-# 作者
+# Author
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;XVOchuliu  
