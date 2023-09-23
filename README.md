@@ -130,6 +130,9 @@
 * 阿里云盘登录页
   <div align=center><img src="https://github.com/XVOchuliu/CSS-animation/blob/master/%E5%B1%95%E7%A4%BA%E5%8A%A8%E7%94%BB/%E9%98%BF%E9%87%8C%E4%BA%91%E7%9B%98%E7%99%BB%E5%BD%95%E9%A1%B5.gif"/></div>
 * 边缘融合加载
+  <div align=center><img src="https://github.com/XVOchuliu/css-animation/blob/master/%E5%B1%95%E7%A4%BA%E5%8A%A8%E7%94%BB/%E8%BE%B9%E7%BC%98%E8%9E%8D%E5%90%88%E5%8A%A0%E8%BD%BD.gif"/></div>
+* 简易融合加载
+  <div align=center><img src="https://github.com/XVOchuliu/css-animation/blob/master/%E5%B1%95%E7%A4%BA%E5%8A%A8%E7%94%BB/%E7%AE%80%E6%98%93%E8%9E%8D%E5%90%88%E5%8A%A0%E8%BD%BD.gif"/></div>
 # Time
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2023-08-16  
 # Author
