@@ -1,5 +1,5 @@
 # Introduction  
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;由于项目开发时遇到各种动画，于是开启了创造动画之旅（纯原生）  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;由于项目开发时遇到各种动画，组件无法满足需求，于是开启了创造动画之旅（纯原生）  
 # Method  
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;下载解压该文件，直接用自己的浏览器打开即可
 # Animation  
