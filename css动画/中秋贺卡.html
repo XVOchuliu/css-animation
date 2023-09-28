@@ -1,0 +1,606 @@
+<!-- 总结：
+1.深蓝色的祥云背景
+2.黄色月亮和镂空文字
+3.闪光灯笼
+4.纯css小兔和祥云
+
+本质揭秘：mix-blend-mode:multiply 正片叠底 -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        :root {
+            --w: 100px;
+            --h: 50px;
+            --color1: #707dda;
+            --color2: #09135e;
+            --bg: linear-gradient(30deg, var(--color1) 0, var(--color1) 30%, transparent 30%), linear-gradient(-30deg, var(--color1) 0, var(--color1) 30%, transparent 30%), radial-gradient(at center bottom, var(--color2) 0%, var(--color1) 2%, var(--color1) 2%, var(--color1) 6%, var(--color2) 6%, var(--color2) 8%, var(--color1) 8%, var(--color1) 12%, var(--color2) 12%, var(--color2) 15%, var(--color1) 15%, var(--color1) 19%, var(--color2) 19%, var(--color2) 23%, var(--color1) 23%, var(--color1) 28%, var(--color2) 28%, var(--color2) 32%, var(--color1) 32%, var(--color1) 37%, var(--color2) 37%, var(--color2) 42%, var(--color1) 42%, var(--color1) 48%, var(--color2) 48%, var(--color2) 54%, var(--color1) 54%, var(--color1) 61%, var(--color2) 61%, var(--color2) 70%, var(--color1) 70%, var(--color1) 100%);
+        }
+        body {
+            width: 100%;
+            height: 100vh;
+            overflow: hidden;
+            background: var(--bg);
+            background-size: var(--w) var(--h);
+        }
+        body::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100vh;
+            --color1: #707dda;
+            --color2: #09135e;
+            background: var(--bg);
+            background-size: var(--w) var(--h);
+            background-position: calc(var(--w) / 2) calc(var(--h) / 2);
+            mix-blend-mode: multiply;
+        }
+        .circle {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            width: 70vmin;
+            height: 70vmin;
+            border-radius: 50%;
+        }
+        #moon_behind {
+            background: #faca23;
+            background: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            mix-blend-mode: screen;
+        }
+        h1 {
+            position: absolute;
+            left: 12%;
+            top: 6%;
+            font-family: '隶书';
+            font-size: 36vmin;
+            font-weight: bold;
+            line-height: 1;
+            color: #000;
+            pointer-events: none;
+        }
+        h1:last-of-type {
+            left: 32%;
+            top: 40%;
+        }
+        #moon_yellow {
+            z-index: 2;
+            background: linear-gradient(#FF0, #FC0);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            mix-blend-mode: multiply;
+        } 
+        #moon_yellow h1 {
+            color: #fff;
+        } 
+        #moon_yellow::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            z-index: 1;
+            width: 100%;
+            height: 100%;
+            border-radius: 100%;
+            box-shadow: 0 0 30px 5px rgba(255, 255, 240, 1);
+        } 
+        #moon_body {
+            z-index: 3;
+            box-shadow: 0 0 30px 5px rgba(255, 255, 240, 1);
+        } 
+        .heyu {
+            position: absolute;
+            top: 40%;
+            right: 10%;
+            font-family: '隶书';
+            font-size: 2.5vmin;
+            font-weight: bold;
+            line-height: 1;
+            color: var(--color2);
+        }    
+        #rabbit {
+            position: absolute;
+            right: 1vmin;
+            top: 2vmin;
+            width: 18vmin;
+            height: 18vmin;
+        } 
+        #rabbit div {
+            position: absolute;
+        } 
+        #rabbit .body {
+            width: 100%;
+            height: 100%;
+            left: 20%;
+            top: 40%;
+        }
+        #rabbit .body1 {
+            width: 60%;
+            height: 40%;
+            top: -12%;
+            left: -7%;
+            background-color: #fff;
+            box-shadow: 0 2px 4px 0 #bbb9a7;
+            border-radius: 50%;
+            transform: rotate(30deg);
+        }
+        #rabbit .body2 {
+            width: 50%;
+            height: 50%;
+            top: -13%;
+            left: 8%;
+            background-color: #fff;
+            box-shadow: 5px 2px 4px 0 #bbb9a7;
+            border-radius: 50%;
+            transform: rotate(30deg);
+        }
+        #rabbit .hand1 {
+            width: 50%;
+            height: 15%;
+            top: 0;
+            left: -32%;
+            background-color: #fff;
+            border-left: 1px solid #bbb9a7;
+            border-radius: 50%;
+            transform: rotate(13deg);
+            animation: hand .8s linear infinite alternate;
+        }
+        @keyframes hand {
+            to {
+                transform: rotate(8deg);
+            }
+        } 
+        #rabbit .foot1 {
+            width: 50%;
+            height: 15%;
+            top: 26%;
+            left: 12%;
+            background-color: #fff;
+            border-radius: 50%;
+            transform: rotate(74deg);
+            animation: foot1 .8s linear infinite alternate;
+        }
+        @keyframes foot1 {
+            to {
+                transform: rotate(82deg);
+            }
+        }
+        #rabbit .foot2 {
+            width: 50%;
+            height: 15%;
+            top: 15%;
+            left: 24%;
+            background-color: #fff;
+            border-radius: 50%;
+            transform: rotate(70deg);
+            animation: foot2 .8s linear infinite alternate;
+        }
+         @keyframes foot2 {
+            to {
+                transform: rotate(76deg);
+            }
+        }
+        #rabbit .tail {
+            width: 15%;
+            height: 15%;
+            top: 0;
+            left: 51%;
+            background-color: #fff;
+            border-radius: 50%;
+        }  
+        #rabbit .head {
+            width: 40%;
+            height: 40%;
+            top: 0;
+            left: 0;
+            background: #fff;
+            border-radius: 50%;
+            border-bottom: 1px solid rgb(133, 130, 130);
+        }
+        #rabbit .head::after {
+            content: '';
+            position: absolute;
+            width: 2.5%;
+            height: 20%;
+            background: #a6aaa4;
+            box-shadow: 0 0 2px 0 rgb(53, 52, 52);
+            border-radius: 12.5%;
+            left: 35%;
+            top: 50%;
+            transform: rotate(-64deg);
+        }
+        #rabbit .mouth {
+            width: 45%;
+            height: 62.5%;
+            top: 32.5%;
+            left: -7.5%;
+            background: #fff;
+            border-left: 1px solid #ccc;
+            border-radius: 50%;
+            transform: rotate(-60deg);
+        }
+        #rabbit .mouth::before {
+            content: '';
+            position: absolute;
+            left: 5%;
+            top: 7.5%;
+            width: 7.5%;
+            height: 2.5%;
+            background: #a6aaa4;
+            transform: rotate(84deg);
+        }
+        #rabbit .ear1 {
+            width: 125%;
+            height: 37.5%;
+            top: -22.5%;
+            right: -75%;
+            background-color: #fff;
+            border-radius: 50%;
+            transform: rotate(-30deg);
+        }
+        #rabbit .ear2 {
+            width: 125%;
+            height: 32.5%;
+            top: 17.5%;
+            right: -95%;
+            background-color: #fff;
+            border-bottom: 1px solid #8f8c74;
+            border-radius: 50%;
+        }
+        #rabbit .ear2::after {
+            content: '';
+            position: absolute;
+            right: 5%;
+            bottom: 5%;
+            width: 70%;
+            height: 70%;
+            border-radius: 50%;
+            background: pink;
+        }  
+        #rabbit_little {
+            --footH: 2.5vmin;
+            position: absolute;
+            left: 14%;
+            bottom: 20%;
+            font-size: 1.2vmin;
+            width: 12vmin;
+            height: 7vmin;
+            border-radius: 41% 59% 41% 41% / 54% 60% 40% 41%;
+            background-color: #fff;
+            background-image: radial-gradient(circle at 80% 48%, #000 0%, #000 4%, transparent 4%);
+            filter: drop-shadow(0 2px 2px rgba(0, 0, 0, 0.2));
+            animation: rabbit_little 1s linear infinite;
+        }            
+        @keyframes rabbit_little {
+            20% {
+                --footH: 2.5vmin;
+                transform: rotate(-10deg) translate(1em, -2em);
+                box-shadow: -0.2em 3em 0 -1em #928282
+            }           
+            40% {
+                --footH: 2.5vmin;
+                transform: rotate(10deg) translate(3em, -4em);
+                box-shadow: -0.2em 3.25em 0 -1.1em #928282
+            }            
+            60%,
+            75% {
+                --footH: 0;
+                transform: rotate(0) translate(4em, 0);
+                box-shadow: -0.2em 1em 0 -0.75em #928282
+            }
+        }            
+        /* 小兔子耳朵 */
+        #rabbit_little::before {
+            content: '';
+            position: absolute;
+            right: 22%;
+            top: -50%;
+            --earW: 1.65vmin;
+            width: var(--earW);
+            height: 6vmin;
+            border-radius: 50%;
+            background: #fff;
+            transform: rotate(-35deg);
+            box-shadow: -2vmin .2vmin 0px .3vmin #fff;
+        }            
+        /* 小兔子脚 */
+        #rabbit_little::after {
+            content: '';
+            position: absolute;
+            left: 3%;
+            bottom: -.3vmin;
+            width: 2.5vmin;
+            height: var(--footH);
+            border-radius: 50%;
+            background: #fff;
+            box-shadow: 7vmin 0 0px .05vmin #fff;
+        }            
+        #rabbit_little>p {
+            position: absolute;
+            left: -1vmin;
+            top: .8vmin;
+            width: 2.5vmin;
+            height: 2.5vmin;
+            border-radius: 50%;
+            background: #fff;
+        }            
+        .lantern {
+            --lanternLine: #d7061f;
+            --lanternWidth: 7vw;
+            --lanternHeight: 12.5vw;
+            position: absolute;
+            left: var(--l);
+            top: var(--t);
+            right: var(--r);
+            transform: scale(var(--scale));
+            width: var(--lanternWidth);
+            height: var(--lanternHeight);
+            border-radius: 12px 12px 12px 12px / 10px 10px 10px 10px;
+            background: radial-gradient(circle at center, #febb75 0%, transparent var(--radius)), repeating-linear-gradient(to right, transparent 0%, transparent 15%, var(--lanternLine) 15%, var(--lanternLine) 25%);
+            background-position: center, calc(var(--lanternWidth) / 6) 0;
+            background-color: #fd3c4e;
+            animation: lantern 1s linear infinite alternate;
+        }
+        .lantern::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            top: -8px;
+            width: 45%;
+            height: 8px;
+            background: #aa0317;
+        }
+        .lantern::after {
+            content: '';
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            bottom: calc(0px - var(--lanternWidth) * 3 / 5);
+            width: 40%;
+            height: calc(var(--lanternWidth) * 3 / 5);
+            background: repeating-linear-gradient(to right, var(--lanternLine) 0%, var(--lanternLine) 5%, transparent 5%, transparent 10%);
+        }            
+        @property --radius {
+            syntax: '<percentage>';
+            inherits: false;
+            initial-value: 35%;
+        }
+        @keyframes lantern {
+            to {
+                --radius: 50%;
+            }
+        }                        
+        .cloud {
+            position: absolute;
+            --cloudW: 13.1vw;
+            --cloudH: 5.5vw;
+            --time: 1s;
+            --color: #fff;
+            --clounLine: .5vw;
+            left: calc(0px - var(--cloudW));
+            top: var(--t);
+            color: var(--color);
+            /* color: #fff; */
+            width: var(--cloudW);
+            height: var(--cloudH);
+            transform: scale(var(--scale)) rotateY(var(--rotateY));
+            animation-name: cloud;
+            animation-duration: 15s;
+            animation-delay: var(--time);
+            animation-timing-function: cubic-bezier(.27, .42, .58, .77);
+            animation-iteration-count: infinite;
+        }           
+        @keyframes cloud {
+            to {
+                left: 100vw;
+            }
+        }    
+        .cloud_reverse {
+            left: calc(100vw + var(--cloudW));
+            animation-name: cloud_reverse;
+        }           
+        @keyframes cloud_reverse {
+            to {
+                left: calc(0px - var(--cloudW));
+            }
+        }  
+        .cloud div {
+            position: absolute;
+        }  
+        .cloud1 {
+            width: 31.57%;
+            height: 87.5%;
+            border-radius: 55% 40% 40% 50%;
+            border: var(--clounLine) solid currentColor;
+            border-right: none;
+        } 
+        .cloud1::after {
+            content: '';
+            position: absolute;
+            right: 0px;
+            bottom: -2.857%;
+            width: 50%;
+            height: 50%;
+            border-radius: 50% 50% 50% 0;
+            border: var(--clounLine) solid currentColor;
+            border-left: none;
+            border-bottom: none;
+        }  
+        .cloud2 {
+            left: 29.4%;
+            top: -8%;
+            width: 48%;
+            height: 60%;
+            border-radius: 50%;
+            border-top: var(--clounLine) solid currentColor;
+        }   
+        .cloud3 {
+            right: 0;
+            top: 5%;
+            width: 42.11%;
+            height: 112.5%;
+            border-radius: 50% 50% 50% 40%;
+            border: var(--clounLine) solid currentColor;
+            border-left: none;
+        }
+        .cloud3::after {
+            content: '';
+            position: absolute;
+            left: 2.5%;
+            bottom: calc(0px - var(--clounLine));
+            width: 50%;
+            height: 50%;
+            border-radius: 50% 50% 0% 50%;
+            border: var(--clounLine) solid currentColor;
+            border-right: none;
+        } 
+        .cloud4 {
+            left: 20%;
+            bottom: -43.75%;
+            width: 40%;
+            height: 62.5%;
+            border-radius: 50%;
+            border-bottom: var(--clounLine) solid currentColor;
+            transform: rotate(-10deg);
+        }
+        .cloud5 {
+            left: -42.105%;
+            top: 50%;
+            width: 42.105%;
+            height: 87.5%;
+            border-radius: 90% 0% 50% 50%;
+            border-top: var(--clounLine) solid currentColor;
+            transform: rotate(10deg);
+        } 
+        .cloud6 {
+            left: -18.422%;
+            bottom: -40%;
+            width: 42.105%;
+            height: 50%;
+            border-radius: 0% 0% 50% 50%;
+            border-bottom: var(--clounLine) solid currentColor;
+            transform: rotate(10deg);
+        } 
+        .cloud6::after {
+            content: '';
+            position: absolute;
+            left: -63%;
+            top: 40%;
+            width: 75%;
+            height: 100%;
+            border-radius: 40% 60% 0 0;
+            border-top: var(--clounLine) solid currentColor;
+        }
+    </style>
+</head>
+<body>
+    <!-- 月亮底图镂空文字 -->
+    <div id="moon_behind" class="circle">
+        <h1>中</h1>
+        <h1>秋</h1>
+    </div>
+    <!-- 月亮上色 -->
+    <div id="moon_yellow" class="circle">
+        <h1>中</h1>
+        <h1>秋</h1>
+        <div class="heyu">
+        <p>但愿人长久千里共婵娟</p>
+        <p>MID-Autumn Festival</p>
+        </div>
+    </div>
+    <div id="moon_body" class="circle">
+    <!-- 右上角兔子 -->
+    <div id="rabbit">
+        <div class="body">
+        <div class="body1"></div>
+        <div class="body2"></div>
+        <div class="hand1"></div>
+        <div class="foot1"></div>
+        <div class="foot2"></div>
+        <div class="tail"></div>
+        </div>
+        <div class="head">
+        <div class="mouth"></div>
+        <div class="ear1"></div>
+        <div class="ear2"></div>
+        </div>
+    </div>
+    <!-- 左下角小兔子 -->
+    <div id="rabbit_little">
+        <p></p>
+    </div>
+    </div>
+    <!-- 灯笼 -->
+    <div class="lantern" style="--l: 15%;--t: 7%;--scale: .9"></div>
+    <div class="lantern" style="--r: 15%;--t: 5%;--scale: 1"></div>
+    <div class="lantern" style="--l: 8%;--t: 30%;--scale: .3"></div>
+    <div class="lantern" style="--r: 6%;--t: 20%;--scale: .6"></div>
+    <div class="lantern" style="--r: 12%;--t: 38%;--scale: .2"></div>
+    <!-- 祥云 -->
+    <div class="cloud" style="--t: 77%;--scale: .8;--rotateY: 0;--color: #ce7808;--time: 8s;">
+        <div class="cloud1"></div>
+        <div class="cloud2"></div>
+        <div class="cloud3"></div>
+        <div class="cloud4"></div>
+        <div class="cloud5"></div>
+        <div class="cloud6"></div>
+    </div>
+    <div class="cloud" style="--t: 77%;--scale: .9;--rotateY: 0;--color: #05aaab;--time: 4s">
+        <div class="cloud1"></div>
+        <div class="cloud2"></div>
+        <div class="cloud3"></div>
+        <div class="cloud4"></div>
+        <div class="cloud5"></div>
+        <div class="cloud6"></div>
+    </div>
+    <div class="cloud" style="--t: 52%;--scale: .5;--rotateY: 0;--color: #fff;--time: 0s;">
+        <div class="cloud1"></div>
+        <div class="cloud2"></div>
+        <div class="cloud3"></div>
+        <div class="cloud4"></div>
+        <div class="cloud5"></div>
+        <div class="cloud6"></div>
+    </div>
+    <div class="cloud cloud_reverse" style="--t: 68%;--scale: .8;--rotateY: 180deg;--color: #fff;--time: 8s;">
+        <div class="cloud1"></div>
+        <div class="cloud2"></div>
+        <div class="cloud3"></div>
+        <div class="cloud4"></div>
+        <div class="cloud5"></div>
+        <div class="cloud6"></div>
+    </div>
+    <div class="cloud cloud_reverse" style="--t: 64%;--scale: .4;--rotateY: 180deg;--color: #fa0e7c;--time: 3s;">
+        <div class="cloud1"></div>
+        <div class="cloud2"></div>
+        <div class="cloud3"></div>
+        <div class="cloud4"></div>
+        <div class="cloud5"></div>
+        <div class="cloud6"></div>
+    </div>
+    <div class="cloud cloud_reverse" style="--t: 85%;--scale: .3;--rotateY: 180deg;--color: #6ee136;--time: 0s">
+        <div class="cloud1"></div>
+        <div class="cloud2"></div>
+        <div class="cloud3"></div>
+        <div class="cloud4"></div>
+        <div class="cloud5"></div>
+        <div class="cloud6"></div>
+    </div>
+</body>
+</html>
