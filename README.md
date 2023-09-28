@@ -135,6 +135,8 @@
   <div align=center><img src="https://github.com/XVOchuliu/css-animation/blob/master/%E5%B1%95%E7%A4%BA%E5%8A%A8%E7%94%BB/%E7%AE%80%E6%98%93%E8%9E%8D%E5%90%88%E5%8A%A0%E8%BD%BD.gif"/></div>
 * 滑动导航栏
   <div align=center><img src="https://github.com/XVOchuliu/css-animation/blob/master/%E5%B1%95%E7%A4%BA%E5%8A%A8%E7%94%BB/%E6%BB%91%E5%8A%A8%E5%AF%BC%E8%88%AA%E6%A0%8F.gif"/></div>
+* 中秋贺卡
+  <div align=center><img src="https://github.com/XVOchuliu/css-animation/blob/master/%E5%B1%95%E7%A4%BA%E5%8A%A8%E7%94%BB/%E4%B8%AD%E7%A7%8B%E8%B4%BA%E5%8D%A1.gif"/></div>
 # Time
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2023-08-16  
 # Author
