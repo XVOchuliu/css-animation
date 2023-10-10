@@ -1,0 +1,127 @@
+<!-- 总结：
+1.雷达基本网格
+2.扫描效果
+3.外散波纹效果
+4.添加头像美化
+
+本质揭秘：
+1.线性渐变&径向渐变实现雷达网格
+2.线性渐变&圆角实现扫描的光
+3.动画延迟，配合实现动效 -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            background: #000;
+        }
+        .radar {
+            width: 500px;
+            height: 500px;
+            position: relative;
+            background: 
+                /* 竖线 */
+                linear-gradient(90deg,transparent 49.75%, #43768e 49.75%, #43768e 50.25%, transparent 50.25% ),
+                /* 横线 */
+                linear-gradient(transparent 49.75%, #43768e 49.75%, #43768e 50.25%,transparent 50.25%),
+                /* 圆环 */
+                repeating-radial-gradient(transparent 0,transparent 27px,#43768e 27px, #43768e 30px);
+            border-radius: 50%;
+        }
+        .radar:before {
+            content: '';
+            position: absolute;
+            width: 250px;
+            height: 250px;
+            background: linear-gradient(45deg, rgba(0, 0, 0, 0) 50%, rgba(107, 183, 208, 1) 100%);
+            border-radius: 100% 0 0 0;
+            animation: scanning 5s linear infinite;
+            transform-origin: right bottom;
+        }
+        @keyframes scanning {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+        .radar:after {
+            content: '';
+            width: 0;
+            height: 0;
+            opacity: 0.5;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            background-color: rgba(107, 183, 208, 1);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            animation: scale 5s ease-in infinite;
+        }
+        @keyframes scale {
+            60%, 100% {
+                width: 800px;
+                height: 800px;
+                opacity: 0;
+            }
+        }
+        .avatar {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            border: 2px solid #fff;
+            z-index: 666;
+        }
+        .girl {
+            position: absolute;
+            left: calc(50% + var(--l));
+            top: calc(50% + var(--t));
+            transform: translate(-50%, -50%) scale(var(--i));
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid #ff2972;
+            animation: upDown 5s infinite linear;
+            animation-delay: calc(var(--d) * 5s);
+            transform-origin: center;
+            z-index: 999;
+        }
+        @keyframes upDown {
+            20% {
+                transform: translate(-50%, -60%) scale(calc(var(--i) * 1.4));
+                box-shadow: 
+                    0 0 10px #ff2972,
+                    0 0 30px #ff2972,
+                    0 0 50px #ff2972;
+            }
+            50%, 100% {
+                transform: translate(-50%, -50%) scale(var(--i));
+                box-shadow: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="radar">
+        <img class="avatar" src="./image/avatar.jpg">
+        <img style="--i: 0.5; --l: 50px; --t: -130px; --d: 0.05;" class="girl" src="./image/a1.jpg" alt="">
+        <img style="--i: 0.6; --l: 130px; --t: 50px; --d: 0.28;" class="girl" src="./image/a2.jpg" alt="">
+        <img style="--i: 0.9; --l: 50px; --t: 50px; --d: 0.36;" class="girl" src="./image/a3.jpg" alt="">
+        <img style="--i: 0.7; --l: -50px; --t: 90px; --d: 0.55;" class="girl" src="./image/a4.jpg" alt="">
+        <img style="--i: 0.7; --l: -80px; --t: -50px; --d: 0.80;" class="girl" src="./image/a5.jpg" alt="">
+    </div>
+</body>
+</html>

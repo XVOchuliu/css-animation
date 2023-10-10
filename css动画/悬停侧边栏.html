@@ -1,0 +1,103 @@
+<!-- 总结：
+1.准备基本结构（导航容器、提示文本、字体图标）
+2.分别设置提示文本容器的边框圆角、三角
+3.设置hover时提示文本容器的显示隐藏切换
+
+本质揭秘：通过设置文本容器的透明度0或1的切换，实现导航提示的切换 -->
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+    <title>悬停侧边栏</title>
+    <link rel="stylesheet" href="fontsTwo/iconfont.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        ul {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            background-color: #231f2e;
+            height: 580px;
+            padding: 20px 12px;
+            border-radius: 10px;
+            box-shadow: 0 10px 50px rgba(6, 5, 59, 0.25);
+        }
+        ul li:nth-child(6) {
+            margin-top: 80px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.15);
+        }
+        ul a {
+            position: relative;
+            color: #fff;
+            text-decoration: none;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 48px;
+            height: 48px;
+            border-radius: 8px;
+        }
+        ul a span {
+            position: absolute;
+            left: calc(100% + 24px);
+            background-color: #fa5c51;
+            white-space: nowrap;
+            padding: 8px 16px;
+            border-radius: 6px;
+            transform-origin: center left;
+            transition: 0.15s ease;
+        }
+        ul a span::before {
+            content: "";
+            width: 12px;
+            height: 12px;
+            background-color: #fa5c51;
+            position: absolute;
+            left: -5px;
+            top: 50%;
+            border-radius: 3px;
+            transform: translateY(-50%) rotate(45deg);
+        }
+        ul a span {
+            opacity: 0;
+        } 
+        ul a:hover,
+        ul a:focus,
+        ul a:active {
+            background-color: #fa5c51;
+            outline: none;
+        }
+        ul a:hover span,
+        ul a:focus span,
+        ul a:active span {
+            transform: scale(1);
+            opacity: 1;
+        }
+    </style>
+</head>
+<body>
+    <ul>
+        <li><a href="#"><i class="iconfont icon-zhuye"></i><span>首页</span></a></li>
+        <li><a href="#"><i class="iconfont icon-wodechanpin"></i><span>产品管理</span></a></li>
+        <li><a href="#"><i class="iconfont icon-huiyuan"></i><span>会员管理</span></a></li>
+        <li><a href="#"><i class="iconfont icon-gouwu"></i><span>订单管理</span></a></li>
+        <li><a href="#"><i class="iconfont icon-yinhangqia"></i><span>财务中心</span></a></li>
+        <li><a href="#"><i class="iconfont icon-tixing"></i><span>消息</span></a></li>
+        <li><a href="#"><i class="iconfont icon-shezhi"></i><span>系统配置</span></a></li>
+        <li><a href="#"><i class="iconfont icon-yonghu"></i><span>用户中心</span></a></li>
+    </ul>
+</body>
+</html>
