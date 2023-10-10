@@ -137,6 +137,10 @@
   <div align=center><img src="https://github.com/XVOchuliu/css-animation/blob/master/%E5%B1%95%E7%A4%BA%E5%8A%A8%E7%94%BB/%E6%BB%91%E5%8A%A8%E5%AF%BC%E8%88%AA%E6%A0%8F.gif"/></div>
 * 中秋贺卡
   <div align=center><img src="https://github.com/XVOchuliu/css-animation/blob/master/%E5%B1%95%E7%A4%BA%E5%8A%A8%E7%94%BB/%E4%B8%AD%E7%A7%8B%E8%B4%BA%E5%8D%A1.gif"/></div>
+* 雷达扫描
+  <div align=center><img src="https://github.com/XVOchuliu/css-animation/blob/master/%E5%B1%95%E7%A4%BA%E5%8A%A8%E7%94%BB/%E9%9B%B7%E8%BE%BE%E6%89%AB%E6%8F%8F.gif"/></div>
+* 悬停侧边栏
+  <div align=center><img src="https://github.com/XVOchuliu/css-animation/blob/master/%E5%B1%95%E7%A4%BA%E5%8A%A8%E7%94%BB/%E6%82%AC%E5%81%9C%E4%BE%A7%E8%BE%B9%E6%A0%8F.gif"/></div>
 # Time
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2023-08-16  
 # Author
