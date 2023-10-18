@@ -1,0 +1,90 @@
+<!-- 总结：
+1.准备基本结构样式
+2.控制多行文本省略
+3.控制按钮切换（基于checkbox）
+4.按钮浮动到右下角（清除浮动）
+5.基于选中状态，控制多行行数，完成展开
+
+本质揭秘：多行文本省略，复选框控制状态，浮动和清除浮动技巧 -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .wrapper {
+      display: flex;
+      margin: 50px auto;
+      width: 400px;
+      overflow: hidden;
+      border-radius: 8px;
+      padding: 15px;
+      box-shadow: 10px 10px 30px #bebebe,
+        -10px -10px 30px #ffffff;
+    }
+    .text {
+      font-size: 20px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      text-align: justify;
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      position: relative;
+    }
+    .text::before {
+      content: '';
+      height: calc(100% - 24px);
+      float: right;
+    }
+    .text::after {
+      content: '';
+      width: 999vw;
+      height: 999vw;
+      position: absolute;
+      box-shadow: inset calc(100px - 999vw) calc(30px - 999vw) 0 0 #fff;
+      margin-left: -100px;
+    }
+    .btn {
+      float: right;
+      clear: both;
+      margin-left: 10px;
+      font-size: 16px;
+      padding: 0 8px;
+      background: #3F51B5;
+      line-height: 24px;
+      border-radius: 4px;
+      color: #fff;
+      cursor: pointer;
+    }
+    .btn::before {
+      content: '展开'
+    }
+    .exp {
+      display: none;
+    }
+    .exp:checked+.text {
+      -webkit-line-clamp: 999;
+    }
+    .exp:checked+.text::after {
+      visibility: hidden;
+    }
+    .exp:checked+.text .btn::before {
+      content: '收起'
+    }
+  </style>
+</head>
+ 
+<body>
+  <div class="wrapper">
+    <input id="exp1" class="exp" type="checkbox">
+    <div class="text">
+      <label class="btn" for="exp1"></label>
+      令人脱发的代码说：css是前端学习的一个基础内容，也是相对具有趣味性的一部分，希望你能从中感受到编程的乐趣，获得一定收获。
+      作品源码都在gihub上，网址https://github.com/XVOchuliu/css-animation，欢迎分享交流技术。想免费学习的小白也欢迎私信我学习中的问题。
+    </div>
+  </div>
+</body>
+</html>

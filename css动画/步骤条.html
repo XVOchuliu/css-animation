@@ -1,0 +1,116 @@
+<!-- 总结：
+1.准备基本步骤条结构
+2.准备整体样式
+3.实现序号自定义
+4.实现引导线
+5.基于active类名，控制高亮状态
+6.测试调优
+
+本质揭秘：
+1.flex布局自适应
+2.CSS计数器 -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .steps {
+      display: flex;
+      justify-content: space-between;
+      padding: 0;
+      margin: 200px 10px;
+      counter-reset: order;
+    }
+    /* 步骤项 */
+    .steps {
+      /*去除默认的序号*/
+      list-style: none;
+      /*定义css计数器*/
+      counter-reset: order;
+    }
+    .steps>li {
+      /*选择器增量*/
+      counter-increment: order;
+    }
+    .steps>li::before {
+      content: counter(order);
+      display: inline-block;
+      width: 1.4em;
+      line-height: 1.4em;
+      margin-right: .5em;
+      text-align: center;
+      border-radius: 50%;
+      border: 1px solid;
+      transition: all .5s;
+      flex-shrink: 0;
+    }
+    /* 步骤项引导线 */
+    .steps>li {
+      /* 弹性宽度（根据内容调整） */
+      flex: auto;
+      /* 内部再开启flex自适应*/
+      display: flex;
+      align-items: center;
+    }
+    .steps>li:not(:last-child)::after {
+      content: '';
+      flex: 1;
+      margin: 0 1em;
+      border-bottom: 1px solid;
+      opacity: .6;
+    }
+    .steps {
+      /*黑色*/
+      --normal-color: #666;
+      /*蓝色*/
+      --active-color: #06e;
+    }
+    .steps>li {
+      color: var(--active-color);
+    }
+    /* 设计激活时数字样式 */
+    .steps>.active::before {
+      color: #fff;
+      background: var(--active-color);
+      border-color: var(--active-color);
+    }
+    /* 设置后面的线 和 step项黑色 */
+    .steps>.active::after,
+    .steps>.active~li {
+      color: var(--normal-color);
+    }
+    .steps>li:last-child {
+      flex: none;
+    }
+  </style>
+</head>
+ 
+<body>
+  <ol class="steps">
+    <li class="active">注册</li>  <!-- 进行中 -->
+    <li>域认证</li>
+    <li>身份校验</li>
+    <li>开通账号</li>
+    <li>测试新增</li>
+  </ol>
+  <script>
+    const lis = document.querySelectorAll('li')
+    let index = 0
+    const timer = setInterval(() => {
+      index++
+      lis.forEach((v, i) => {
+        v.classList.remove('active')
+      })
+      lis[index].classList.add('active')
+ 
+      if (index === lis.length - 1) {
+        clearInterval(timer)
+      }
+    }, 1000)
+  </script>
+</body>
+ 
+</html>
