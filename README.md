@@ -126,9 +126,9 @@
 * 日月模式切换
   <div align=center><img src="https://github.com/XVOchuliu/CSS-animation/blob/master/%E5%B1%95%E7%A4%BA%E5%8A%A8%E7%94%BB/%E6%97%A5%E6%9C%88%E6%A8%A1%E5%BC%8F%E5%88%87%E6%8D%A2.gif"/></div>  
 * 简约登录页
-  <div align=center><img src="https://github.com/XVOchuliu/CSS-animation/blob/master/%E5%B1%95%E7%A4%BA%E5%8A%A8%E7%94%BB/%E7%AE%80%E7%BA%A6%E7%99%BB%E5%BD%95%E9%A1%B5.gif"/></div>  
+  <div align=center><img src="https://github.com/XVOchuliu/css-animation/blob/master/%E5%B1%95%E7%A4%BA%E5%8A%A8%E7%94%BB/%E7%AE%80%E7%BA%A6%E7%99%BB%E5%BD%95%E9%A1%B5.gif"/></div>  
 * 阿里云盘登录页
-  <div align=center><img src="https://github.com/XVOchuliu/CSS-animation/blob/master/%E5%B1%95%E7%A4%BA%E5%8A%A8%E7%94%BB/%E9%98%BF%E9%87%8C%E4%BA%91%E7%9B%98%E7%99%BB%E5%BD%95%E9%A1%B5.gif"/></div>
+  <div align=center><img src="https://github.com/XVOchuliu/css-animation/blob/master/%E5%B1%95%E7%A4%BA%E5%8A%A8%E7%94%BB/%E9%98%BF%E9%87%8C%E4%BA%91%E7%9B%98%E7%99%BB%E5%BD%95%E9%A1%B5.gif"/></div>
 * 边缘融合加载
   <div align=center><img src="https://github.com/XVOchuliu/css-animation/blob/master/%E5%B1%95%E7%A4%BA%E5%8A%A8%E7%94%BB/%E8%BE%B9%E7%BC%98%E8%9E%8D%E5%90%88%E5%8A%A0%E8%BD%BD.gif"/></div>
 * 简易融合加载
@@ -141,6 +141,16 @@
   <div align=center><img src="https://github.com/XVOchuliu/css-animation/blob/master/%E5%B1%95%E7%A4%BA%E5%8A%A8%E7%94%BB/%E9%9B%B7%E8%BE%BE%E6%89%AB%E6%8F%8F.gif"/></div>
 * 悬停侧边栏
   <div align=center><img src="https://github.com/XVOchuliu/css-animation/blob/master/%E5%B1%95%E7%A4%BA%E5%8A%A8%E7%94%BB/%E6%82%AC%E5%81%9C%E4%BE%A7%E8%BE%B9%E6%A0%8F.gif"/></div>
+* 密码灯登录
+  <div align=center><img src="https://github.com/XVOchuliu/css-animation/blob/master/%E5%B1%95%E7%A4%BA%E5%8A%A8%E7%94%BB/%E5%AF%86%E7%A0%81%E7%81%AF%E7%99%BB%E5%BD%95.gif"/></div>
+* 注册登录切换
+  <div align=center><img src="https://github.com/XVOchuliu/css-animation/blob/master/%E5%B1%95%E7%A4%BA%E5%8A%A8%E7%94%BB/%E6%B3%A8%E5%86%8C%E7%99%BB%E5%BD%95%E5%88%87%E6%8D%A2.gif"/></div>
+* 多行文本展开
+  <div align=center><img src="https://github.com/XVOchuliu/css-animation/blob/master/%E5%B1%95%E7%A4%BA%E5%8A%A8%E7%94%BB/%E5%A4%9A%E8%A1%8C%E6%96%87%E6%9C%AC%E5%B1%95%E5%BC%80.gif"/></div>
+* 步骤条
+  <div align=center><img src="https://github.com/XVOchuliu/css-animation/blob/master/%E5%B1%95%E7%A4%BA%E5%8A%A8%E7%94%BB/%E6%AD%A5%E9%AA%A4%E6%9D%A1.gif"/></div>
+* AR扫福效果
+  <div align=center><img src="https://github.com/XVOchuliu/css-animation/blob/master/%E5%B1%95%E7%A4%BA%E5%8A%A8%E7%94%BB/AR%E6%89%AB%E7%A6%8F%E6%95%88%E6%9E%9C.gif"/></div>
 # Time
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2023-08-16  
 # Author
