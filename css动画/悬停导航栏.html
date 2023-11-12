@@ -1,0 +1,116 @@
+<!-- 总结：
+1.导航整体结构（4个li包含图标、文字）
+2.导航整体样式（flex布局、横向排布）
+3.悬停动效（透明度、位移、底色）
+
+本质揭秘：flex布局、透明度、位移、过渡动画 -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="http://at.alicdn.com/t/c/font_4090357_z2qpnic06um.css">
+    <style>
+        * {
+          margin: 0;
+          padding: 0;
+          box-sizing: border-box;
+        }
+        body {
+          height: 100vh;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          background: linear-gradient(200deg, #eef1f5, #e6e9f0);
+        }
+        .nav {
+          display: flex;
+          justify-content: center;
+          height: 100px;
+          background-color: #02abf6;
+          border-radius: 20px;
+          box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+          list-style: none;
+          overflow: hidden;
+        }
+        .nav .item {
+          position: relative;
+          cursor: pointer;
+          padding: 0 10px;
+          width: 150px;
+          height: 100%;
+        }
+        .nav .item a {
+          display: block;
+          position: relative;
+          width: 100%;
+          height: 100px;
+          color: #fff;
+          text-decoration: none;
+          overflow: hidden;
+        }
+        .nav .item a span {
+          position: absolute;
+          width: 100%;
+          bottom: -50%;
+          left: 0;
+          text-align: center;
+          opacity: 0;
+          transition: all .4s ease;
+        }
+        .nav .item a i {
+          position: absolute;
+          top: 50%;
+          left: 0;
+          transform: translateY(-50%);
+          width: 100%;
+          text-align: center;
+          font-size: 32px;
+          transition: all .4s ease;
+        }
+        .nav .item:hover {
+          background-color: #02abf6;
+        }
+     
+        .nav .item:hover a span {
+          opacity: 1;
+          bottom: 18px;
+        }
+     
+        .nav .item:hover a i {
+          transform: translateY(-95%);
+        }
+    </style>
+</head>
+<body>
+    <ul class="nav">
+        <li class="item">
+          <a href="#">
+            <i class="iconfont icon-home"></i>
+            <span>首页</span>
+          </a>
+        </li>
+        <li class="item">
+          <a href="#">
+            <i class="iconfont icon-gift"></i>
+            <span>礼包</span>
+          </a>
+        </li>
+        <li class="item">
+          <a href="#">
+            <i class="iconfont icon-message"></i>
+            <span>消息</span>
+          </a>
+        </li>
+        <li class="item">
+          <a href="#">
+            <i class="iconfont icon-money"></i>
+            <span>钱包</span>
+          </a>
+        </li>
+    </ul>
+</body>
+</html>

@@ -1,0 +1,94 @@
+<!-- 总结：
+1.准备整体导航结构
+2.准备整体导航样式
+3.添加修饰性下划线
+4.JS辅助切换active类
+5.添加切换时，线的状态
+
+本质揭秘：
+1.元素定位
+2.active类名切换，控制位移
+3.Transition过渡动画 -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+          margin: 0;
+          padding: 0;
+        }
+        li {
+          list-style: none;
+        }
+        .nav {
+          display: flex;
+          width: 450px;
+          height: 40px;
+          line-height: 40px;
+          margin: 50px auto;
+          position: relative;
+        }
+        .nav li {
+          flex: 1;
+          text-align: center;
+        }
+        .nav a {
+          text-decoration: none;
+          color: #ccc;
+          font-size: 20px;
+          transition: all .5s;
+        }
+        .active a {
+          color: #666;
+        }
+        .line {
+          position: absolute;
+          left: 30px;
+          bottom: 0;
+          height: 2px;
+          width: 90px;
+          background-color: orange;
+          transition: all .5s;
+        }
+         
+        li:nth-child(1).active ~ .line{
+          transform: translateX(0);
+          background-color: orange;
+        }
+        li:nth-child(2).active ~ .line{
+          transform: translateX(150px);
+          background-color: blue;
+        }
+        li:nth-child(3).active ~ .line{
+          transform: translateX(300px);
+          background-color: red;
+        }
+    </style>
+</head>
+<body>
+    <ul class="nav">
+        <li class="active"><a href="#">首页特价</a></li>
+        <li><a href="#">商城甩卖</a></li>
+        <li><a href="#">个人中心</a></li>
+        <div class="line"></div>
+    </ul>
+    <script>
+        // 获取所有的 li
+        const lis = document.querySelectorAll('li')
+        // 遍历注册点击事件
+        lis.forEach((v, i) => {
+          v.addEventListener('click', () => {
+            // 移除其他所有的active
+            lis.forEach((li) => li.classList.remove('active'))
+            // 给自己加上active
+            v.classList.add('active')
+          })
+        })
+    </script>
+</body>
+</html>
