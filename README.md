@@ -151,6 +151,16 @@
   <div align=center><img src="https://github.com/XVOchuliu/css-animation/blob/master/%E5%B1%95%E7%A4%BA%E5%8A%A8%E7%94%BB/%E6%AD%A5%E9%AA%A4%E6%9D%A1.gif"/></div>
 * AR扫福效果
   <div align=center><img src="https://github.com/XVOchuliu/css-animation/blob/master/%E5%B1%95%E7%A4%BA%E5%8A%A8%E7%94%BB/AR%E6%89%AB%E7%A6%8F%E6%95%88%E6%9E%9C.gif"/></div>
+* 下拉线导航栏
+  <div align=center><img src="https://github.com/XVOchuliu/css-animation/blob/master/%E5%B1%95%E7%A4%BA%E5%8A%A8%E7%94%BB/%E4%B8%8B%E5%88%92%E7%BA%BF%E5%AF%BC%E8%88%AA%E6%A0%8F.gif"/></div>
+* 光线加载
+  <div align=center><img src="https://github.com/XVOchuliu/css-animation/blob/master/%E5%B1%95%E7%A4%BA%E5%8A%A8%E7%94%BB/%E5%85%89%E7%BA%BF%E5%8A%A0%E8%BD%BD.gif"/></div>
+* 悬停导航栏
+  <div align=center><img src="https://github.com/XVOchuliu/css-animation/blob/master/%E5%B1%95%E7%A4%BA%E5%8A%A8%E7%94%BB/%E6%82%AC%E5%81%9C%E5%AF%BC%E8%88%AA%E6%A0%8F.gif"/></div>
+* 导航下拉菜单
+  <div align=center><img src="https://github.com/XVOchuliu/css-animation/blob/master/%E5%B1%95%E7%A4%BA%E5%8A%A8%E7%94%BB/%E5%AF%BC%E8%88%AA%E4%B8%8B%E6%8B%89%E8%8F%9C%E5%8D%95.gif"/></div>
+* 自定义选中动画
+  <div align=center><img src="https://github.com/XVOchuliu/css-animation/blob/master/%E5%B1%95%E7%A4%BA%E5%8A%A8%E7%94%BB/%E8%87%AA%E5%AE%9A%E4%B9%89%E9%80%89%E4%B8%AD%E5%8A%A8%E7%94%BB.gif"/></div>
 # Time
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2023-08-16  
 # Author
