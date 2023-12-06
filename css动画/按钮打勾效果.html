@@ -1,0 +1,156 @@
+<!-- 总结：
+1.准备基本结构（卡片容器、按钮、确认框、字体图标、svg圆）
+2.通过设置确认框checked状态时的动画，完成打勾效果
+
+本质揭秘：通过确认框点击之后的后续变化，给checked状态下的不同元素，设置组合动画，最终实现动态打勾效果 -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!--图标库-->
+    <link rel="stylesheet" href="fontThree/iconfont.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .background {
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 400px;
+            height: 400px;
+            background: skyblue;
+            color: white;
+            border-radius: 5px;
+            box-shadow: 0 5px 15px 0 rgba(0, 0, 0, 0.25);
+        }
+        .background input {
+            display: none;
+        }
+        .background .button {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 260px;
+            height: 60px;
+            border: 2px solid white;
+            border-radius: 30px;
+            text-align: center;
+            font-size: 20px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease-in-out;
+        }
+        .background .button:hover {
+            background-color: rgb(135, 142, 235);
+        }
+        .background .button .icon-check {
+            position: absolute;
+            color: rgb(111, 119, 230);
+            opacity: 0;
+            font-size: 30px;
+        }
+        .background .circle {
+            position: absolute;
+            width: 65px;
+            height: 65px;
+            fill: none;
+            stroke: white;
+            stroke-width: 3px;
+            stroke-dasharray: 183 183;
+            opacity: 0;
+            left: 50%;
+            top: 50%;
+            pointer-events: none;
+            transform: translate(-50%,-50%) rotate(-90deg);
+        }
+        .background input:checked ~ .button {
+            animation: 
+                button 0.5s ease both, 
+                fill 0.5s ease-out 1.5s forwards;
+        }
+        @keyframes button {
+            0% {
+                width: 260px;
+                left: 70px;
+                border-color: white;
+                color: white;
+            }
+            50% {
+                color: transparent;
+            }
+            100% {
+                width: 60px;
+                left: 170px;
+                border-color: rgb(33, 175, 231);
+                background: transparent;
+                color: transparent;
+            }
+        }
+        @keyframes fill {
+            0% {
+                background: transparent;
+                border-color: white;
+            }
+            100% {
+                background: white;
+            }
+        }
+        .background input:checked ~ .button .icon-check {
+            animation: check 0.5s ease-out 1.5s both;
+        }
+        @keyframes check {
+            0% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+
+        .background input:checked ~ .circle {
+            animation: circle 2s ease-out 0.5s both;
+        }
+        @keyframes circle {
+            0% {
+                stroke-dashoffset: 183;
+            }
+            50% {
+                stroke-dashoffset: 0;
+                stroke-dasharray: 183;
+                transform:translate(-50%,-50%) rotate(-90deg) scale(1);
+                opacity: 1;
+            }
+            90%,
+            100% {
+                stroke-dasharray: 500 500;
+                transform:translate(-50%,-50%) rotate(-90deg) scale(2);
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="background">
+        <input type="checkbox" id="button">
+        <label for="button" class="button">
+          点击按钮<i class="iconfont icon-check"></i>
+        </label>
+        <svg class="circle">
+          <circle cx="32" cy="32" r="31" />
+        </svg>
+    </div>
+</body>
+</html>

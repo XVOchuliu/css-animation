@@ -1,0 +1,74 @@
+<!-- 总结：
+1.相册基本结构（5个div，5个img）
+2.相册基本样式（盒子居中、添加投影）
+3.悬停3D（3D变换、选择器技巧）
+
+本质揭秘：投影、3D变换、:not选择器、~选择器 -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: #1a252c;
+        }
+        .container {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transform-style: preserve-3d;
+        }
+        .container .box {
+            width: 120px;
+            height: 120px;
+            margin: 0 2px;
+            position: relative;
+            transition: .5s;
+            cursor: pointer;
+            /* 添加倒影 */
+            -webkit-box-reflect: below 1px linear-gradient(transparent, #0002);
+        }
+        .container .box img {
+            width: 100%;
+            height: 100%;
+            border-radius: 5px;
+        }
+
+        .container:hover > :not(:hover) {
+            margin: 0 -20px;
+            filter: drop-shadow(0 0 25px #000) drop-shadow(0 0 45px #000);
+            transform: perspective(500px) rotateY(45deg) scale(0.95);
+        }
+        .container .box:hover ~ .box {
+            transform: perspective(500px) rotateY(-45deg) scale(0.95);
+        }
+                
+        .container .box:hover {
+            transform: perspective(500px) rotateY(0) scale(1.2);
+            z-index: 1000;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="box"><img src="image/10.png"></div>
+        <div class="box"><img src="image/11.png"></div>
+        <div class="box"><img src="image/12.png"></div>
+        <div class="box"><img src="image/13.png"></div>
+        <div class="box"><img src="image/14.png"></div>
+      </div>
+</body>
+</html>

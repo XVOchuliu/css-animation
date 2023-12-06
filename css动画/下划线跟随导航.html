@@ -1,0 +1,74 @@
+<!-- 总结：
+1.导航基本结构
+2.导航基本样式
+3.设计悬停下划线效果
+
+本质揭秘：定位、位移、~选择器选中后面的兄弟元素 -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+    ul {
+      list-style: none;
+    }
+    body {
+      height: 100vh;
+      display: flex;
+    }
+    ul {
+      display: flex;
+      margin: auto;
+    }
+
+    li {
+      position: relative;
+      padding: 20px;
+      font-size: 24px;
+      color: #000;
+      line-height: 1;
+      transition: 0.2s all linear;
+      cursor: pointer;
+    }
+
+    li::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 100%;
+      width: 0;
+      height: 100%;
+      border-bottom: 2px solid #000;
+      transition: 0.2s all linear;
+    }
+    li:hover::before {
+      width: 100%;
+      top: 0;
+      left: 0;
+      transition-delay: 0.1s;
+      z-index: -1;
+    }
+    li:hover ~ li::before {
+      left: 0;
+    }
+  </style>
+</head>
+
+<body>
+  <ul>
+    <li>首页</li>
+    <li>商城特惠</li>
+    <li>个人中心</li>
+    <li>令人脱发的代码</li>
+  </ul>
+</body>
+
+</html>

@@ -1,0 +1,145 @@
+<!-- 总结：
+1.准备基本结构（拼图、背景图片、滑块、文本）
+2.通过js设置滑块和拼图的联动，判定如果移动位置正确则弹框提升验证成功
+
+本质揭秘：通过css实现拼图与背景图片的展示位置一致，通过js设置滑块和拼图的联动完成滑块移动效果，结束滑动时判定位移距离是否正确从而进行提示 -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        .box {
+            position: relative;
+            width: 375px;
+            margin: 100px auto;
+        }
+        .check {
+            width: 375px;
+            height: 250px;
+            background-size: 100% 100%;
+            background-image: url(image/one.jpg);
+        }
+        .check-content {
+            position: absolute;
+            top: 100px;
+            left: 280px;
+            width: 50px;
+            height: 50px;
+            background: rgba(0, 0, 0, 0.5);
+            border: 1px solid #fff;
+        }
+        .check-block {
+            width: 50px;
+            height: 50px;
+            border: 1px solid #fff;
+            background-image: inherit;
+            background-repeat: inherit;
+            background-size: 375px 250px;
+            background-position: -280px -100px;
+            position: absolute;
+            top: 100px;
+            left: 10px;
+        }
+        .drag {
+            width: 375px;
+            height: 50px;
+            background-color: #e3e3e3;
+            margin-top: 10px;
+            position: relative;
+        }
+        .drag-block {
+            width: 50px;
+            height: 50px;
+            background-color: yellowgreen;
+            z-index: 10;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+        .drag-tips {
+            width: 95%;
+            height: 100%;
+            margin: 0 auto;
+            text-align: center;
+            line-height: 50px;
+            font-size: 12px;
+            color: #8a8a8a;
+        }
+    </style>
+</head>
+<body>
+    <div class="box">
+		<div class="check">
+			<div class="check-content"></div>
+			<div class="check-block"></div>
+		</div>
+
+		<div class="drag">
+			<div class="drag-block"></div>
+			<div class="drag-tips">按住左边按钮向右拖动完成上方图像验证</div>
+		</div>
+	</div>
+
+	<script>
+		// 获取校验区域
+		const drag = document.querySelector('.drag')
+		// 获取两个滑块和拖动按钮
+		const dragBlock = document.querySelector('.drag-block')
+		const content = document.querySelector('.check-content')
+		const check = document.querySelector('.check-block')
+
+		// 随机生成一个x,y坐标 用于设置校验块的位置
+		let x = parseInt(Math.random() * 325)
+		let y = parseInt(Math.random() * 200)
+		// 定义个运动状态 如果为true代表鼠标已经按下
+		let animating = false
+		// 存储鼠标按下的x坐标
+		let startX = 0
+		// 存储移动的位置
+		let offsetX = 0
+		content.style.cssText = `left:${x}px; top:${y}px`
+		check.style.cssText = `background-position: -${x}px -${y}px; top: ${y}px`
+
+		// 添加鼠标移动事件
+		drag.addEventListener('mousemove', e => {
+			// 判断运动状态
+			if (!animating) { return }
+			// 计算移动的位置
+			offsetX = e.pageX - startX
+			// 判断移动距离是否正确
+			if (offsetX < 0 || offsetX > 350) { return }
+			// 修改可移动盒子的 x 轴坐标
+			dragBlock.style.transform = `translateX(${offsetX}px)`
+			// 设置被验证滑块left值
+			check.style.left = `${offsetX}px`
+		})
+
+		// 添加鼠标按下事件
+		dragBlock.addEventListener('mousedown', (e) => {
+			animating = true
+			startX = e.pageX
+		})
+
+		// 添加鼠标弹起事件
+		document.addEventListener('mouseup', () => {
+			animating = false
+			// 根据移动的位置判断是否成功
+			if (offsetX >= x - 2 && offsetX <= x + 2) {
+				alert('成功')
+			} else {
+				// 验证失败 滑块和被验证块恢复坐标
+				dragBlock.style.transform = `translateX(0px)`
+				check.style.left = `0px`
+			}
+		})
+
+	</script>
+</body>
+</html>
